@@ -35,10 +35,15 @@ $THEME->editor_sheets = [];
 
 $THEME->parents = ['boost'];
 
-$THEME->scss = 'main';
 // A dock is a way to take blocks out of the page and put them in a persistent floating area on the side of the page. Boost
 // does not support a dock so we won't either - but look at bootstrapbase for an example of a theme with a dock.
 $THEME->enable_dock = false;
+//$THEME->prescsscallback = 'theme_charteredcollege_get_pre_scss';
+//$THEME->scss = function($theme) {
+  //  return theme_charteredcollege_get_main_scss_content($theme);
+//};
+//$THEME->csspostprocess = 'theme_charteredcollege_process_css';
+$THEME->supportscssoptimisation = false;
 
 // This is an old setting used to load specific CSS for some YUI JS. We don't need it in Boost based themes because Boost
 // provides default styling for the YUI modules that we use. It is not recommended to use this setting anymore.
