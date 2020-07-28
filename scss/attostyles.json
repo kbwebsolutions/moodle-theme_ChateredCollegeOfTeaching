@@ -1,0 +1,49 @@
+// This file is for setting the Style Settings
+// for the Atto Plugin.
+
+
+{
+  "title": "EEF Header",
+  "type": "inline",
+  "classes": "eefheader"
+},
+{
+"title": "Required Header",
+"type": "block",
+"classes": "requiredheader"
+},
+{
+"title": "Estimated time",
+"type": "block",
+"classes": "estimatedtime"
+},
+{
+"title": "Video time",
+"type": "block",
+"classes": "videotime"
+},
+{
+"title": "Reading Time",
+"type": "block",
+"classes": "readingtime"
+},
+{
+"title": "Activity Time",
+"type": "block",
+"classes": "activitytime"
+},
+{
+"title": "Forum Time",
+"type": "block",
+"classes": "forumtime"
+},
+{
+"title": "Active From",
+"type": "block",
+"classes": "availablefrom"
+},
+{
+"title": "ImageLink",
+"type":"block",
+"classes":"imglink"
+}
