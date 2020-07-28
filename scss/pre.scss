@@ -1,0 +1,147 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Chartered College variables.
+ *
+ * @package    theme_charteredcollege
+ * @copyright  2020 Kieran Briggs
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+// charteredcollege specific overrides to Boost settings from
+// theme/boost/scss/bootstrap/variables.scss
+
+$font-size-root: 28px;
+$font-size-lg:   1.25rem;
+$font-size-sm:   .75rem;
+$font-size-xs:   .6rem;
+
+// -------------------------
+// Course cards size in the user dashboard.
+// -------------------------
+$grid-gutter-width:     1.7rem !default;
+$card-group-margin:     ($grid-gutter-width / 2) !default;
+$card-deck-margin:      $card-group-margin !default;
+$card-gutter:           $card-deck-margin * 2;
+
+
+// This needs some investigation of issues around IE11 and Moodle's autoprefixer implementaion.
+//$enable-flex:               true;
+
+$brand-primary:         #25346b !default;
+$brand-secondary:       #ee7ea0 !default;
+$brand-success:         #3d5c1f;
+$brand-warning:         #b55600;
+$brand-danger:          #990f3d;
+$brand-info:            #02567e;
+
+$body-bg:               #fff;
+$body-color:            #565656;
+
+$font-family-system:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-sans-serif:  "Roboto", $font-family-system;
+$font-family-feature:     "Roboto", $font-family-system;
+$font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+
+$headings-font-weight:    400;
+$headings-color:          $body-color;
+
+$modal-backdrop-bg:           #fff;
+$modal-backdrop-opacity:      .8;
+
+$breadcrumb-divider: "/";
+$breadcrumb-divider-rtl: "\005C";
+
+$state-success-text:             $brand-success;
+$state-success-bg:               fade-out($brand-success, 0.9);
+$state-success-border:           fade-out($brand-success, 0.9);
+
+$state-info-text:                $brand-info;
+$state-info-bg:                  fade-out($brand-info, 0.9);
+$state-info-border:              fade-out($brand-info, 0.9);
+
+$state-warning-text:             $brand-warning;
+$state-warning-bg:               fade-out($brand-warning, 0.9);
+$state-warning-border:           fade-out($brand-warning, 0.9);
+
+$state-danger-text:              $brand-danger;
+$state-danger-bg:                fade-out($brand-danger, 0.9);
+$state-danger-border:            fade-out($brand-danger, 0.9);
+
+$footer-color-bg:                #f1f0ee;
+
+$user-content-max-width:         43.5em;
+
+// -------------------------
+// Button customisations
+// -------------------------
+
+$btn-secondary-color:           $brand-primary;
+
+$border-radius:          0;
+$border-radius-lg:       0;
+$border-radius-sm:       0;
+
+$btn-border-radius:          .25rem;
+$btn-border-radius-lg:       .3rem;
+$btn-border-radius-sm:       .2rem;
+
+// -------------------------
+// Colour variables for resources and activities.
+// -------------------------
+
+$color-word:                         #03a9f4; // Blue.
+$color-powerpoint:                   #ff7300; // Orange.
+$color-excel:                        #009e51; // Green.
+$color-pdf:                          #f44336; // Red.
+$color-audio:                        #8bc34a; // Green.
+$color-video:                        #55b5cc; // Blue.
+$color-code:                         #f0652a; // Orange.
+
+$color-communication:                #8bc34a; // Foums, Chat
+$color-assignment:                   #03a9f4; // Assignment, workshop
+$color-quiz:                         #ffa000; // Quiz, choice, feedback
+$color-wiki:                         #009688; // Wiki, glossary
+
+
+// -------------------------
+// Colour variables for the customisable mr_nav.
+// -------------------------
+
+$nav-bg:                            rgba(255, 255, 255, .95) !default;
+$nav-color:                         $brand-primary !default;
+$nav-color-hover:                   darken($nav-color, 8%);
+
+$nav-button-bg:                     rgba(255, 255, 255, 0) !default;
+$nav-button-color:                  $nav-color !default;
+
+$nav-login-bg:                      $nav-button-bg;
+$nav-login-color:                   $nav-button-color;
+
+@if (alpha($nav-button-bg) == 0) {
+  $nav-login-color:               $nav-bg;
+  $nav-login-bg:                  $nav-button-color;
+}
+
+// -------------------------
+// Colour variables for snap home page.
+// -------------------------
+
+$snap-featured-courses: #f1f0ee;
+$snap-carousel-buttons: #e3e3e3;
+
+/* https://github.com/twbs/bootstrap/issues/22222#issuecomment-292819959 */
+$cursor-disabled: not-allowed;
