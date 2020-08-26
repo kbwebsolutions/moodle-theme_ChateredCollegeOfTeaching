@@ -15,17 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Chartered College of Teaching 2021 theme.
+ * Theme plugin version definition.
  *
- * @package    theme_charteredcollege
- * @copyright  2020 Kieran Briggs
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   theme_charteredcollege
+ * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.blackboard.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// This line protects the file from being accessed by a URL directly.
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
- $plugin->version = 2020062500.01;
- $plugin->requires = 2020061500; // Moodle 3.9
- $plugin->component = 'theme_charteredcollege';
- $plugin->dependencies = array('theme_boost' => 2020061500);
+$plugin->version   = 2020061102;
+$plugin->requires  = 2019111800;
+$plugin->release   = '3.8.3';
+$plugin->maturity  = MATURITY_STABLE;
+$plugin->component = 'theme_charteredcollege';
+$plugin->dependencies = [
+    'theme_boost' => '2018051400'
+];

@@ -1,0 +1,157 @@
+// -------------------------
+//  Course footer - a footer in charteredcollege courses.
+// -------------------------
+// -------------------------
+// Course footer.
+// -------------------------
+
+#charteredcollege-course-footer {
+    margin-top: 1em;
+    padding: 1em 4%;
+    background-color: $footer-color-bg;
+
+    .charteredcollege-media-object {
+        font-weight: normal;
+    }
+}
+
+#charteredcollege-course-footer-recent-activity,
+#charteredcollege-course-footer-about,
+#charteredcollege-course-footer-summary,
+#charteredcollege-course-footer-contacts {
+    padding-top: .5em;
+}
+
+// -------------------------
+//  About the course.
+// -------------------------
+#charteredcollege-course-footer-about {
+    max-width: 43.5em;
+}
+#charteredcollege-course-footer-summary {
+    font-family: $font-family-serif;
+}
+// -------------------------
+//  Course contacts.
+// -------------------------
+#charteredcollege-course-footer-contacts {
+    .charteredcollege-media-object .userpicture {
+        width: 50px;
+    }
+}
+
+// -------------------------
+//  Recent updates.
+// -------------------------
+#charteredcollege-course-footer-recent-activity {
+    padding-top: .5em;
+
+    h3 {
+        display: none;
+    }
+
+    // Grid content for various breakpoints.
+    @include media-breakpoint-up(md) {
+        .charteredcollege-media-object {
+            width: 23%;
+            float: left;
+        }
+        // Clear every 4th.
+        & > .charteredcollege-media-object:nth-child(5n+1) {
+            clear: left;
+        }
+    }
+    @include media-breakpoint-down(md) {
+        .charteredcollege-media-object {
+            width: 48%;
+            float: left;
+        }
+        // Clear every second.
+        & > .charteredcollege-media-object:nth-child(3n+1) {
+            clear: left;
+        }
+    }
+
+    .charteredcollege-media-object {
+        margin-right: 2%;
+        border-top: .3em solid $gray-light;
+        // Mrooms forum output updates as media objects which we need to be 100%;
+        .charteredcollege-media-object {
+            width: 100%;
+            float: none;
+            border: none;
+
+            h3 {
+                display: block;
+            }
+        }
+        // Activity colours.
+        &.forum,
+        &.chat,
+        &.hsuforum {
+            border-color: $color-communication;
+        }
+        &.assign,
+        &.assignment,
+        &.workshop {
+            border-color: $color-assignment;
+        }
+        &.choice,
+        &.feedback,
+        &.quiz,
+        &.survey,
+        &.questionnaire,
+        &.lesson {
+            border-color: $color-quiz;
+        }
+        &.data,
+        &.glossary,
+        &.wiki {
+            border-color: $color-wiki;
+        }
+    }
+
+    // Single line recent updates info (normally a link).
+    .info {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.bold {
+            font-weight: inherit;
+        }
+    }
+
+    .date {
+        font-size: small;
+    }
+
+    // Attempt to only show the most recent update.
+    // This is complex.
+    // charteredcollege also uses js to update the dom for recent updates.
+
+    // Hide things to start...
+    .charteredcollege-media-object .charteredcollege-media-object,
+    li,
+    .head,
+    .info {
+        display: none;
+    }
+    // Updates are shown in reverse order, and we want the most recent, i.e. the last.
+    .charteredcollege-media-object {
+        div.charteredcollege-media-object,
+        li,
+        div.head {
+            &:last-of-type {
+                display: block;
+            }
+        }
+    }
+
+    // Block display some elements account for dom inconsistansies.
+    .head .info,
+    .charteredcollege-media-object.chat .head,
+    .charteredcollege-media-object.chat .userlist {
+        display: block;
+    }
+}

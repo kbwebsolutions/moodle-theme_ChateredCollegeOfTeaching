@@ -1,0 +1,725 @@
+/**
+ * Plugins css.
+ */
+
+/**
+ * Global search.
+ */
+
+/* stylelint-disable declaration-no-important*/
+
+#mr-nav .search-input-wrapper {
+    padding: .5em;
+    padding-bottom: 0;
+    overflow: visible;
+    // Colour for search icon.
+    .icon.fa-search {
+        font-size: 24px;
+        width: auto;
+        height: auto;
+        color: $nav-color;
+        margin: 0 0;
+    }
+    // Height for search input.
+    form > input {
+        height: auto;
+        padding-left: 0;
+        padding-right: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    form.search-input-form.expanded > input {
+        margin-left: 1em;
+        margin-top: -4px;
+    }
+}
+
+/**
+ * Core notifications (bell) and popover.
+ */
+#nav-notification-popover-container {
+    display: inline-block;
+    float: none;
+    width: 2.35em;
+    // Bell icon.
+    .icon.fa-bell {
+        font-size: 24px;
+        width: auto;
+        height: auto;
+        color: $nav-color;
+
+        &:before {
+            content: "\f0a2";
+        }
+    }
+    .popover-region-toggle {
+        padding: 0.5em;
+        // Hide arrow on the top of the popover.
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+
+    // Circle with a count on the bell.
+    .count-container {
+        background-color: darken($brand-primary, 8%);
+        height: 18px;
+        width: 18px;
+        text-align: center;
+        border-radius: 50%;
+        padding: 0;
+        line-height: inherit;
+        right: 0.2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    .popover-region-container {
+        top: 2.5rem;
+        width: 300px;
+        text-align: left;
+    }
+
+    .popover-region-header-container {
+        height: auto;
+        border-bottom: none;
+        padding-right: 0;
+    }
+    .hover-tooltip {
+        display: none;
+    }
+
+    .popover-region-content-container {
+        max-height: 400px;
+        overflow-y: scroll;
+        a.context-link {
+            outline: none;
+        }
+    }
+
+    // Override core hover colours.
+    .content-item-container:hover {
+        background-color: white !important;
+        color: $body-color !important;
+    }
+
+    .content-item-footer .timestamp {
+        color: $body-color !important;
+    }
+
+    .popover-region-footer-container {
+        height: auto;
+    }
+
+}
+
+/**
+ * Intellicart plugin shopping cart.
+ */
+#nav-intellicart-popover-container {
+    display: inline-block;
+    float: none;
+
+    .icon.fa-shopping-cart {
+        font-size: 24px;
+        width: auto;
+        height: auto;
+        color: $nav-color;
+    }
+
+    .popover-region-container {
+        top: 2.5rem;
+    }
+}
+
+#mr-nav .popover-region-container .intellicart-footer a {
+    color: white;
+}
+
+/**
+ * Video js filter.
+ */
+
+// Center play button.
+.video-js {
+    .vjs-big-play-button {
+        top: calc(50% - 2rem);
+        left: calc(50% - 2rem);
+        line-height: 4rem;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 100%;
+        border-color: transparent;
+    }
+
+    &:hover {
+        .vjs-big-play-button {
+            border-color: transparent;
+        }
+    }
+}
+
+/**
+ * report : dates.
+ * https://moodle.org/plugins/report_editdates
+ */
+#page-report-editdates-index .activityicon {
+    @include svg-icon;
+}
+
+/**
+ * Coments block.
+ */
+.comment-list li {
+    color: $body-color !important; // Shame - overwrite inline style.
+}
+
+/**
+ * Mod assignment.
+ */
+#page-mod-assign-view {
+    .duedata {
+        font-family: $font-family-system;
+    }
+    // Rubric tables for grading criteria.
+    .gradingmethodpreview {
+        clear: both;
+    }
+
+    .gradingform_rubric {
+        max-width: 100%;
+    }
+    // Grading feedback checklist.
+    .gradingform_checklist .group {
+        .items .item.checked {
+            background: #eee;
+            border: none;
+            border-left: .25em solid $brand-success;
+        }
+
+        .description {
+            font-family: $font-family-system;
+        }
+    }
+
+    .assign-submission-data .fileuploadsubmissiontime {
+        float: left;
+    }
+
+    // Larger screen layout.
+    @include media-breakpoint-up(md) {
+        .assign-intro,
+        .assign-feedback {
+            @include make-col(8);
+            padding-right: 4%;
+            min-height: 100px;
+        }
+
+        .assign-intro {
+            max-width: 100%;
+            padding-bottom: 2em;
+            word-wrap: break-word
+        }
+
+        .groupselector,
+        .assign-grading-summary,
+        .assign-submission-data {
+            @include make-row();
+            @include make-col(4);
+            float: right;
+            // Undo make-col margins.
+            margin-left: 0;
+            margin-right: 0;
+            .plugincontentsummary {
+                width: 100%;
+            }
+        }
+        .assign-grading-summary,
+        .assign-submission-data,
+        .groupselector {
+            margin-top: 0;
+            margin-left: 1em;
+            width: calc(33.33% - 1em);
+        }
+    }
+
+    .groupselector,
+    .assign-grading-summary,
+    .assign-submission-data {
+        padding: 1em;
+        margin-bottom: .5em;
+        background-color: $gray-lighter;
+        font-family: $font-family-system;
+    }
+    .submissionsdata {
+        width: 100%;
+    }
+    // Add an indicator of progress for submissions.
+    .submissions-status {
+        border-bottom: .5em solid #999;
+        padding-bottom: 1em;
+        margin-bottom: 1em;
+    }
+
+    .submission-status-row {
+        display: flex;
+        span:nth-of-type(1) {
+            width: 76.66%;
+        }
+        span:nth-of-type(2) {
+            width: 33.33%;
+            text-align: right;
+        }
+    }
+
+    .submissions-line {
+        background-color: $brand-success;
+        height: .5em;
+        margin-bottom: -1.5em; // Height + submissions-status padding.
+    }
+
+    .plugin-submission-title {
+        width: 100%;
+    }
+
+    .statusdata, .gradingdata, .lastmodified {
+        font-size: 0.8em;
+        span {
+            margin-left: 0.5em;
+        }
+        margin-bottom: 1em;
+    }
+}
+
+.assign-submission-data a.btn {
+    margin: 1em 1em;
+}
+
+#page-mod-assign-view .assign-submission-data .boxaligncenter {
+    word-break: break-all;
+}
+
+.needsgradingdata {
+    margin-right: 1em;
+    .badge {
+        margin-left: 0.25em;
+    }
+}
+
+/**
+ * Assign feedback PDF editor.
+ * Prevent PDF edit area from displaying outside of dialogs.
+ *
+ * Note - applies to joule grader which is why this is not nested within .path-mod-assign.
+ * Also, note - it's an issue with the editor being inside a dialog, so fix applied more widely than just to
+ * joule-grader.
+ */
+.moodle-dialogue-base .assignfeedback_editpdf_widget .drawingregion {
+    left: 0;
+    top: 0;
+}
+
+/* Drop down menus in the anotation bar */
+.moodle-dialogue-base .moodle-dialogue.assignfeedback_editpdf_dropdown {
+    min-width: 1em;
+}
+
+.path-mod-assign {
+    [data-region="user-info"] {
+        h4 {
+            line-height: 1rem;
+        }
+        .img-rounded {
+            height: 40px;
+            border-radius: 100%;
+        }
+    }
+    [data-region="user-selector"] .alignment {
+        [data-region="input-field"] .form-control {
+            max-width: 255px;
+        }
+    }
+    #page-content [data-region="grade-panel"] .popout [data-region="popout-button"] img {
+        max-width: none;
+    }
+    [data-region="grade-panel"] .mform .fitem {
+        &:hover {
+            background-color: $modal-content-bg;
+        }
+        .felement {
+            float: none;
+            margin-top: .25rem;
+        }
+        &.has-popout {
+            padding: $spacer / 2;
+
+            &.popout {
+                // When actually popped out.
+                padding: $card-spacer-y $card-spacer-x;
+            }
+        }
+        div.form-inline.felement {
+            display: inline-block;
+        }
+
+    }
+}
+
+#advancedgrading-criteria td.remark {
+    min-width: 150px;
+}
+
+/**
+ * Survey module.
+ * Fix black text on save.
+ */
+#page-mod-survey-save div[role="main"] h2 {
+    padding-top: 0.5em;
+    color: #fff;
+}
+
+/**
+ * Conduit.
+ */
+#page-blocks-conduit-view {
+    .mform {
+        .fitem .felement.fgroup span {
+            display: inline-block;
+        }
+        #fgroup_id_timestarted_grp,
+        #fgroup_id_timecompleted_grp {
+            .felement.fgroup span {
+                display: block;
+            }
+        }
+    }
+}
+
+.path-blocks-conduit {
+    .yui-dt table td {
+        vertical-align: middle;
+        &.yui-dt-col-action {
+            padding-right: 0;
+            padding-left: 0;
+            a {
+                margin-right: 0;
+                margin-left: 0.1em;
+                i {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .widgets {
+        white-space: normal;
+
+        input {
+            display: inline-block;
+            margin: 8px 0 0 5px;
+        }
+    }
+}
+
+.edit_pages_box span.label {
+    color: $body-color;
+}
+
+/**
+ * Stop rubric mform from being positioned inefficiently in dialog.
+ */
+#local-joulegrader-gradepane-panel .mform {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/**
+ * Mod book.
+ */
+.path-mod-book {
+
+    .book_toc_numbered {
+        font-size: 1em;
+        ul {
+            list-style-type: none;
+            padding: 0;
+            ul {
+                padding-left: 4%;
+            }
+        }
+    }
+
+    // Hide next/previous image when not a link.
+    .navimages {
+        img {
+            visibility: hidden;
+        }
+        a img {
+            visibility: visible;
+        }
+        .bookprev:after,
+        .booknext:before {
+            content: attr(title);
+            font-family: $font-family-base;
+        }
+    }
+    // Style next and previous navigation.
+    .navtop {
+        display: none;
+    }
+    .bookprev,
+    .booknext {
+        display: inline-block;
+        width: 50%;
+    }
+    .bookprev {
+        text-align: left;
+    }
+}
+#page-mod-book-mod.path-mod-book #id_general .fcontainer .checkbox {
+    display: none;
+}
+
+// Book mod grid.
+@include media-breakpoint-up(sm) {
+    #page-mod-book-view {
+
+        #region-main {
+            width: 70%;
+            float: right;
+        }
+
+        #moodle-blocks {
+            clear: none;
+            width: 30%;
+            float: left;
+        }
+    }
+}
+
+// Print style guide for book
+#page-mod-book-print {
+    font-size: 18px !important;
+    font-family: $font-family-serif !important;
+    p, div.book_chapter {
+        margin-right: 3em;
+    }
+}
+
+/**
+ * Mod lesson.
+ */
+
+.path-mod-lesson {
+    // Remove duplicate page edit button.
+    &#page-mod-lesson-edit,
+    &#page-mod-lesson-view {
+        .singlebutton > form[action*="editpage.php"] {
+            display: none;
+        }
+        .form-check > .text-nowrap {
+            white-space: normal!important;
+        }
+    }
+    // Unstyle secondary navtabs.
+    .nav.nav-tabs + .nav-tabs {
+        border: none;
+        text-align: right;
+        li {
+            display: inline-block;
+            margin-right: 0.5em;
+        }
+        * {
+            border: none;
+            margin: 0;
+            padding: 0;
+            float: none;
+        }
+    }
+    // Unset inline height and width of slideshow.
+    .slideshow {
+        height: auto !important;
+        width: auto !important;
+        padding-bottom: 1em;
+    }
+    // Improve edit pages form - tables for layout :(
+    // NOTE - lots of inline styles in lesson, so !important needed.
+    .edit_pages_box {
+        // Remove striping.
+        tr {
+            background-color: white !important;
+        }
+        // Make page headings obvious.
+        th.header {
+            text-align: left !important;
+            border-bottom: none !important;
+            font-size: 1.5em;
+            font-weight: 500;
+            // Float actions right.
+            a {
+                float: right;
+                padding: 0.3em;
+            }
+        }
+        // Fix none bs label class.
+        span.label {
+            color: white;
+        }
+    }
+}
+
+/* Radio button and checkbox inputs. */
+#page-mod-lesson-view.path-mod-lesson {
+    .answeroptiongroup,
+    .answeroption {
+
+        input[type="radio"],
+        input[type="checkbox"] {
+
+            + label {
+                padding-left: 1.5em;
+            }
+        }
+
+        /* Put options on seperate lines. */
+        .fgroup > span {
+            display: table; // SHAME - hack for lessons css/html display of radio buttons.
+            label p {
+                display: inline; // SHAME - fix for p tag in each label.
+            }
+        }
+    }
+}
+
+/**
+ * Styling for mod_choicegroup.
+ */
+#page-mod-choicegroup-report .response table.results td.data .user {
+    float: left;
+
+    .attemptaction {
+        margin-right: 1em;
+    }
+}
+
+/**
+ * Styling for admin tool templatelibrary.
+ */
+
+#page-admin-tool-templatelibrary-index [data-region="searchresults"] {
+    overflow: auto;
+}
+
+/**
+ * Course competency report.
+ */
+
+.gradingform_guide_comment_chooser {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.gradingform_guide_comment_chooser > ul > li button {
+    text-align: left;
+    white-space: normal;
+}
+
+/**
+* Course prorgess report.
+*/
+
+.completion-progresscell {
+    text-align: center;
+}
+
+body.pagelayout-admin.path-mod {
+    // Hide mod forms until js kicks in.
+    .mform {
+        opacity: 0;
+    }
+    &.charteredcollege-js-loaded {
+        .mform {
+            opacity: 1;
+        }
+    }
+    &:not(.charteredcollege-js-loaded) #region-main:before {
+        @include ajaxing(block, relative, 200px, 20px);
+        background-image: none !important;
+        margin: 2em auto;
+    }
+}
+
+.path-mod-page {
+    #id_appearancehdr {
+        input[readonly] {
+            pointer-events: none;
+            filter: grayscale(100%) opacity(0.5);
+        }
+    }
+}
+
+section#charteredcollege-add-new-section #summary-editor_ifr {
+    height: 13em !important;
+}
+
+section#charteredcollege-add-new-section #summary-editor_parent #summary-editor_tbl {
+    display: table;
+    flex-flow: row wrap;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+/**
+ * Styling for atto_htmlplus.
+ */
+.charteredcollege-form-required .editor_atto_wrap .CodeMirror.cm-s-default.CodeMirror-wrap {
+    z-index: 1;
+}
+
+#page-local-pld-view #id_config_text_ifr {
+    height: 19em !important;
+}
+
+#page-blocks-conduit-view.theme-charteredcollege cqm-main {
+    a.nav-link.active {
+        background-color: rgba($nav-color, 0.1);
+    }
+    a.nav-link {
+        color: $gray!important;
+        font-weight: 500;
+    }
+    cqm-file-list .card-header {
+        background-color: rgba($nav-color, 0.1);
+        h5 {
+            color: $nav-color;
+            font-weight: 500;
+        }
+    }
+
+}
+
+#page-mod-choice-report.theme-charteredcollege {
+    .responseaction {
+        margin: 1em;
+        label {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    }
+    
+    .downloadreport ul li {
+        list-style: none;
+        padding: 0 20px;
+        display: inline;
+        float: left;
+    }
+}
+
+#page-mod-data-view form#portfolio-add-button {
+    display: block;
+}

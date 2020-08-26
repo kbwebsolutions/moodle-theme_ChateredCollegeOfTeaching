@@ -1,0 +1,2383 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * charteredcollege course swatch.
+ *
+ * @package   theme_charteredcollege
+ * @copyright Copyright (c) 2015 Blackboard Inc. (http://www.blackboard.com)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+//
+// A Course page - The main content
+// --------------------------------------------------
+// Course page
+// -------------------------
+/***************
+THE COURSE DOM LOOKS LIKE THIS :
+(n.b. i did not invent this dom structure)
+
+section#region-main
+    div role=main
+        div.coursecontent
+            ul.somestringfromtheformat e.g  topics/weeks etc
+
+ ****************************/
+
+/* stylelint-disable declaration-no-important*/
+
+// Course page  - turn editing on button.
+.format-topics,
+.format-weeks {
+    #page-mast .singlebutton {
+        display: none;
+    }
+
+    // SLamour Nov 2015 - editing only shows blocks.
+    &.editing.pagelayout-course {
+        #course-toc,
+        #region-main {
+            display: none;
+        }
+
+        #page-mast .singlebutton {
+            display: block;
+        }
+    }
+}
+
+// Blocks config pages when editing.
+.editing.pagelayout-admin {
+    #region-main {
+        display: block;
+    }
+}
+
+// Block config pages for the front page when editing.
+#page-site-index.pagelayout-admin {
+    #region-main {
+        max-width: 43.5em;
+    }
+
+    #moodle-frontpage-elements,
+    #moodle-blocks {
+        display: none;
+    }
+}
+
+.section .filler {
+    display: none;
+}
+
+// -------------------------
+// Drag and drop upload message
+// -------------------------
+
+#dndupload-status {
+    display: none;
+}
+.dndupload-preview {
+    display: none !important;
+}
+.dndupload-over {
+    .charteredcollege-dropzone {
+        background-color: #fafafa;
+    }
+}
+
+// -------------------------
+// Special section in charteredcollege for course tools.
+// -------------------------
+#coursetools {
+    @include clearfix;
+}
+
+// -------------------------
+// Progressbar.js circles in course dashboard.
+// -------------------------
+.charteredcollege-progress-circle {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 100%;
+
+    &.charteredcollege-progressbar-link {
+        &:hover,
+        &:focus {
+            background-color: #eee;
+        }
+        .progressbar-text:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .progressbar-text {
+        font-size: 1.3em;
+        font-family: $font-family-system;
+    }
+}
+
+#charteredcollege-student-dashboard {
+    padding: 1em 0;
+
+    .userpicture {
+        margin-top: 5%;
+    }
+}
+
+#coursetools-list {
+    @include clearfix;
+
+    a {
+        width: 32%;
+        margin: 0.5%;
+        float: left;
+        padding: 0.5em;
+        font-size: 1em;
+        text-align: center;
+        border: 1px solid #eee;
+        border-radius: $btn-border-radius;
+
+        .charteredcollege-participant-icons,
+        img.svg-icon {
+            display: block !important;
+            margin: 0.3em auto;
+            @include clearfix;
+        }
+
+        /* Cover image used as icon. */
+        .charteredcollege-cover-icon {
+            border-radius: 100%;
+        }
+
+        /* User images as icons. */
+        .charteredcollege-participant-icons {
+            img {
+                @include svg-icon;
+                margin: 0 0.5%;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+/* Small screen course tools */
+@include media-breakpoint-down(sm) {
+    #coursetools-list {
+        a {
+            width: 49%;
+            height: 78px; // Magic number for small screen height.
+        }
+    }
+}
+
+// -------------------------
+// Add numbers to sections
+// -------------------------
+
+.topics,
+.weeks {
+    counter-reset: annotation-list -1;
+    margin: 0;
+    padding: 0;
+}
+
+.format-weeks #chapters {
+    list-style: none;
+}
+
+.format-topics:not(.no-number-toc) {
+    li.section .sectionname .sectionnumber:before {
+        content: counter(annotation-list) ".\00a0";
+    }
+
+    // drag and drop yui hack
+    .yui3-dd-proxy li.section .sectionname:before {
+        content: ' ';
+    }
+
+    #section-0 .sectionname:before {
+        content: " ";
+    }
+
+    li.section.main {
+        counter-increment: annotation-list;
+    }
+}
+
+li.section:focus {
+    outline: none;
+}
+
+// -------------------------
+// Course sections
+// -------------------------
+
+.course-content ul li.section.main {
+    border: 0;
+}
+
+.course-content {
+    ul.weeks,
+    ul.topics {
+        list-style: none;
+    }
+}
+
+.course-content .current {
+    background-color: transparent;
+}
+
+.sectionname {
+    padding: .5rem 0;
+    margin-top: 0;
+    white-space: normal !important;
+}
+
+.path-course-view .section .summary {
+    position: relative;
+    line-height: inherit;
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    @include clearfix;
+
+    p {
+        margin-bottom: 1.6em;
+    }
+}
+
+.charteredcollege-section-editing {
+    max-width: 100%;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    margin: 0 auto;
+    float: none;
+    display: block;
+    text-align: left;
+    margin-top: -1em;
+
+    a {
+        display: inline-block;
+        border-radius: 100%;
+        width: 2em;
+        height: 2em;
+        padding: 0.1em 0.3em;
+        text-align: center;
+        overflow: hidden;
+        &:hover,
+        &.charteredcollege-show,
+        &[aria-pressed="true"] {
+            background-color: $gray-lighter;
+        }
+    }
+
+    a:after {
+        content: ' ';
+        width: 100%;
+        display: inline-block;
+        min-height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 70%;
+    }
+
+    .charteredcollege-move:after {
+        background-image: url([[pix:theme|move]]);
+        background-size: 100%;
+    }
+
+    .charteredcollege-visibility.charteredcollege-show:after {
+        background-image: url([[pix:core|i/show]]);
+    }
+
+    .charteredcollege-visibility.charteredcollege-hide:after {
+        background-image: url([[pix:core|i/hide]]);
+    }
+
+    .charteredcollege-delete:after {
+        background-image: url([[pix:core|t/delete]]);
+    }
+
+    .charteredcollege-highlight[aria-pressed="false"]:after {
+        background-image: url([[pix:core|i/marker]]);
+    }
+
+    .charteredcollege-highlight[aria-pressed="true"]:after {
+        background-image: url([[pix:core|i/marked]]);
+    }
+
+    .charteredcollege-sharing-cart:after {
+        background-image: url([[pix:core|t/backup]]);
+    }
+
+    a.ajaxing:after {
+        @include ajaxing(block, relative, 20px, 6px);
+        background-image: none !important;
+        margin: 0 auto;
+        top: 6px;
+    }
+
+    .loadingstat {
+        margin-left: 1em;
+    }
+
+}
+
+#charteredcollege-modchooser-modal {
+
+    .tab-content > .active {
+        display: flex;
+    }
+
+    .modal-header {
+        border-bottom: none;
+        button {
+            order: 2; // Push button to right.
+        }
+    }
+
+    #charteredcollege-modchooser-help-tab {
+        .nav-link {
+            border: none;
+        }
+    }
+
+    .charteredcollege-modchooser-addlink {
+        display: block;
+        height: 6.25em;
+        overflow: hidden;
+        font-size: .8em;
+        font-family: $font-family-system;
+        color: $body-color;
+        @include alakazam;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+        }
+
+        img {
+            margin: 0.5em 0;
+        }
+
+    }
+
+    .charteredcollege-modchooser-help {
+        text-align: left;
+    }
+}
+
+// Styles for accessible tabs.
+
+#charteredcollege-modchooser-modal,
+#charteredcollege-pm-accessible-tab {
+    ul.nav.nav-tabs {
+        li.tab {
+            margin-right: 0.3em;
+            border: 0.06em solid #ddd;
+        }
+
+        li.tab.active a.nav-link {
+            background-color: darken($brand-primary, 8%);
+            color: #fff;
+        }
+
+        .nav-link.active.show {
+            border: none;
+            color: #000;
+        }
+
+        a.nav-link {
+            color: #000;
+            padding: .5em 1.5em;
+            text-decoration: none;
+            border: none;
+        }
+    }
+}
+
+.charteredcollege-dropzone {
+    text-align: center;
+
+    .charteredcollege-dropzone-label {
+        display: block;
+        cursor: pointer;
+        background: transparent url("[[pix:resource|icon]]") 50% 1em no-repeat;
+        background-size: 2rem 2rem;
+        padding: 3em 0 1em 0;
+        border: 3px dashed #eee;
+        border-radius: $btn-border-radius;
+
+        &:hover,
+        &:focus {
+            border-color: $gray-lighter;
+
+            .fake-link {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.section-modchooser-link {
+    display: block;
+    text-align: center;
+    padding: 1em 0;
+    border: 3px solid #eee;
+
+    &:hover,
+    &:focus {
+        border-color: $gray-lighter;
+    }
+
+    a {
+        display: block;
+    }
+
+    img {
+        @include svg-icon;
+    }
+}
+
+.section-modchooser-link,
+.charteredcollege-dropzone {
+    margin-top: 1em;
+}
+
+/* Landing page does not have renderer, so markup is different. */
+#page-site-index .section-modchooser-link {
+    border-color: white;
+}
+
+// get rid of js cursor style applied to the whole commands area
+.charteredcollege-section-editing[style] {
+    cursor: default !important;
+}
+
+// -------------------------
+// important! stuff so sections are not detected as visible by js
+// -------------------------
+
+.course-content ul li.section.main {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.course-content > ul li.section,
+#coursetools,
+#charteredcollege-add-new-section {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.course-content > ul li.section.state-visible, {
+    overflow: visible;
+}
+
+//Override !important in less/moodle/undo.scss, not needed after 3.2 and BS4.
+.course-content > ul li.section.hidden {
+    visibility: hidden !important;
+
+    &.state-visible {
+        visibility: visible !important;
+    }
+}
+
+.course-content > ul li.section {
+    .content {
+        display: none;
+    }
+
+    &.state-visible .content {
+        display: block;
+    }
+}
+
+.course-content > ul li.section.state-visible,
+#charteredcollege-add-new-section.state-visible,
+.editing #charteredcollege-add-new-section,
+#coursetools.state-visible,
+.editing #coursetools,
+.format-singleactivity #coursetools {
+    visibility: visible;
+    height: auto;
+    width: auto;
+    outline: 0;
+    overflow: visible;
+}
+
+/* hide progress label with odd z-indexing */
+#completionprogressid {
+    display: none;
+}
+
+.section_footer,
+.visibleifjs.addresourcemodchooser {
+    clear: both;
+    display: block;
+}
+
+.section-modchooser {
+    text-align: center;
+    padding: 0;
+}
+
+/* MODS & RESOURCES IN COURSE */
+
+// -------------------------
+// Reset moodle css mess
+// -------------------------
+
+.path-site li.activity > div,
+.path-course-view li.activity > div {
+    padding: 0;
+}
+
+// shame - moodle uses ul and li for sections. We have to overspecify and reset the basic dom element styles to account for this
+.section {
+    ul,
+    ol {
+        margin: 1.6em 4%;
+
+        ul,
+        ol {
+            margin: 0 4%;
+        }
+    }
+
+    .activityinstance .contentafterlink,
+    .activityinstance .contentwithoutlink {
+        ul,
+        ol {
+            margin: 1.6em 4%;
+
+            ul,
+            ol {
+                margin: 0 4%;
+            }
+        }
+
+        .contentafterlink p {
+            margin-bottom: 1.6em;
+        }
+    }
+}
+// Bootstrap navtabs do not require margin.
+.section {
+    ul,
+    ol {
+        &.nav-tabs {
+            margin: 0;
+        }
+    }
+}
+
+// -------------------------
+// Activity & Resource styles
+// -------------------------
+
+// -------------------------
+//  Assets in charteredcollege.
+// -------------------------
+.section li.charteredcollege-asset {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+    height: auto;
+    font-family: $font-family-system;
+    background-color: #fff;
+    border: 1px solid $gray-lighter;
+    border-top-width: 0.3em;
+
+    // For editors add space for editong tools.
+    &.charteredcollege-can-edit {
+        padding-bottom: 2em !important;
+    }
+
+    &.draft:not(.charteredcollege-can-view-hidden) {
+        display: none;
+    }
+
+    .asset-wrapper {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: static;
+        padding: 0.5em 1em;
+    }
+
+    .charteredcollege-assettype {
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+    }
+
+    .activityinstance {
+        padding: 0;
+        height: auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        @include clearfix;
+
+        .activityicon {
+            float: left;
+            width: 38px;
+            height: 38px;
+            margin-top: -5px; // magic number.
+            margin-right: 0.5em;
+            @include alakazam;
+        }
+
+        // Link to the mod (headings in charteredcollege).
+        .charteredcollege-asset-link {
+            font-size: 1em;
+            margin: 0;
+            @include alakazam;
+
+            // The link itself.
+            a {
+                color: $body-color;
+
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+
+                    .activityicon {
+                        transform: scale(1.25);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.activity-navigation {
+    // Undo row negative margins.
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#page-mod-quiz-attempt {
+    #region-main {
+        .activity-navigation {
+            display: none;
+        }
+    }
+}
+
+/**
+ * resourcelinkdetails = moodle putting filetype on screen if option selected
+ * we do this by default in charteredcollege, so hide moodle version
+ */
+.resourcelinkdetails {
+    display: none;
+}
+/* charteredcollege has its own implimentation of these, so hide moodles */
+.activityinstance .accesshide,
+.groupinglabel {
+    display: none;
+}
+
+// -------------------------
+// charteredcollege label
+// -------------------------
+
+.section .activity.modtype_label.label {
+    background-image: none;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    font-weight: 400;
+    padding: 0.5em 0;
+    margin: 0.5em 0;
+    box-shadow: none;
+    border: none !important;
+    @include clearfix;
+
+    .asset-wrapper,
+    .activityinstance {
+        padding: 0.5em 0;
+    }
+}
+
+// -------------------------
+// charteredcollege native assets - books, page, images
+// -------------------------
+
+.section li.charteredcollege-native {
+    border: none;
+    height: auto;
+    margin: 0.5em auto;
+
+    .asset-wrapper {
+        padding: 0;
+    }
+
+    .activityicon,
+    .charteredcollege-assettype {
+        display: none;
+    }
+
+    .contentafterlink {
+        font-size: 1em;
+        padding-bottom: 1em;
+    }
+
+    .summary-figure {
+        text-align: center;
+    }
+
+    // some stuff for hide and show
+    .pagemod-content {
+        display: none;
+        clear: both;
+        padding: 1em 0;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .summary-text + h6 {
+        clear: left;
+    }
+
+    &.state-expanded {
+        .summary-text,
+        .summary-figure {
+            display: none;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    li.modtype_page .summary-figure {
+        width: 50%;
+        float: left;
+        padding-right: 4%;
+    }
+}
+
+// TODO - make better
+// title/link on images - css is shame
+.charteredcollege-native.charteredcollege-image .activityinstance .charteredcollege-asset-link a {
+    display: none;
+}
+
+.modtype_book,
+.modtype_page {
+    border-bottom: 1px solid #ccc;
+}
+
+.charteredcollege-native.modtype_book ol.bookmod-chapters {
+    margin: 0;
+    &.list-bullets {
+        list-style-type: square;
+    }
+    &.list_none {
+        list-style-type: none;
+    }
+    &.list-indented {
+        list-style-type: none;
+        li {
+            padding-left: 1em;
+        }
+    }
+}
+
+.charteredcollege-resource-figure {
+    position: relative;
+
+    .charteredcollege-expand-link {
+        display: inline-block;
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+
+        img {
+            border-radius: 100%;
+            border: 1px solid white;
+            width: 1.75rem;
+            height: 1.75rem;
+            transition: all .4s ease-in-out;
+            background-color: white;
+        }
+
+        &:hover,
+        &:focus {
+
+            img {
+                transform: scale(1.1);
+                border-color: $gray-light;
+            }
+        }
+    }
+
+    .charteredcollege-resource-figure-caption {
+        padding: 0.5em 0;
+        color: $gray;
+    }
+}
+
+
+// -------------------------
+// charteredcollege resource
+// -------------------------
+
+.section li.charteredcollege-resource {
+    display: block;
+    @include alakazam;
+
+    .activityinstance .activityicon {
+        height: 1.5em;
+        width: 1.5em;
+        margin-top: 0;
+    }
+
+    .charteredcollege-asset-link {
+        font-size: 1em;
+    }
+}
+
+// -------------------------
+// charteredcollege resources as cards.
+// -------------------------
+body.charteredcollege-resource-card li.charteredcollege-resource {
+    height: 200px;
+    width: 31%;
+    margin: 1%;
+    float: left;
+    clear: none;
+    background-image: url([[pix:theme|file]]);
+    background-repeat: no-repeat;
+    background-position: 50% 70%;
+    background-size: 38px auto;
+
+    &:hover {
+        background-size: 50px auto;
+    }
+
+    // Resource cards are clickable with data-href, so add cursor pointer.
+    .asset-wrapper {
+        @include clearfix;
+        .charteredcollege-header-card {
+            padding-bottom: 1.5em;
+        }
+        .charteredcollege-asset-actions {
+            display: flex;
+        }
+    }
+
+    .activityicon {
+        display: none;
+    }
+
+    .contentafterlink {
+        font-size: small;
+        padding-top: 0.5em;
+    }
+
+    &.charteredcollege-mime-document,
+    &.charteredcollege-mime-writer,
+    &.charteredcollege-mime-oth,
+    &.charteredcollege-mime-text {
+        border-top-color: $color-word;
+        background-image: url([[pix:core|/f/document]]);
+    }
+
+    &.charteredcollege-mime-powerpoint,
+    &.charteredcollege-mime-impress {
+        border-top-color: $color-powerpoint;
+        background-image: url([[pix:core|/f/powerpoint]]);
+    }
+
+    &.charteredcollege-mime-spreadsheet,
+    &.charteredcollege-mime-chart,
+    &.charteredcollege-mime-database,
+    &.charteredcollege-mime-calc {
+        border-top-color: $color-excel;
+        background-image: url([[pix:core|/f/spreadsheet]]);
+    }
+
+    // ADOBE //
+    &.charteredcollege-mime-pdf,
+    &.charteredcollege-mime-eps,
+    &.charteredcollege-mime-flash {
+        border-top-color: $color-pdf;
+        background-image: url([[pix:core|/f/pdf]]);
+    }
+
+    &.charteredcollege-mime-flash {
+        background-image: url([[pix:core|/f/flash]]);
+    }
+
+    // MULTIMEDIA //
+    &.charteredcollege-mime-mp3,
+    &.charteredcollege-mime-wav,
+    &.charteredcollege-mime-audio {
+        border-top-color: $color-audio;
+        background-image: url([[pix:core|/f/audio]]);
+    }
+
+    &.charteredcollege-mime-mov,
+    &.charteredcollege-mime-wmv,
+    &.charteredcollege-mime-video,
+    &.charteredcollege-mime-quicktime,
+    &.charteredcollege-mime-mpeg,
+    &.charteredcollege-mime-avi {
+        border-top-color: $color-video;
+        background-image: url([[pix:core|/f/video]]);
+    }
+
+    &.modtype_lightboxgallery,
+    &.charteredcollege-mime-bmp {
+        border-top-color: #4abc96;
+        background-image: url([[pix:core|/f/image]]);
+    }
+
+    // MOODLE MODS //
+    &.modtype_url {
+        border-top-color: #999;
+        background-image: url([[pix:core|/f/url]]);
+    }
+
+    &.modtype_imscp,
+    &.modtype_scorm {
+        border-top-color: #f7981d;
+        background-image: url([[pix:core|/f/book]]);
+    }
+
+    &.modtype_scorm {
+        background-image: url([[pix:scorm|icon]]);
+    }
+
+    &.modtype_imscp {
+        background-image: url([[pix:imscp|icon]]);
+    }
+
+    &.modtype_folder {
+        border-top-color: #fed859;
+        background-image: url([[pix:core|/f/folder]]);
+    }
+
+    // CODE & SYSTEM //
+    &.charteredcollege-mime-archive {
+        border-top-color: #fed859;
+        background-image: url([[pix:core|/f/archive]]);
+    }
+
+    &.charteredcollege-mime-markup,
+    &.charteredcollege-mime-html,
+    &.charteredcollege-mime-sourcecode {
+        border-top-color: #f0652a;
+        background-image: url([[pix:core|/f/sourcecode]]);
+    }
+
+    &.charteredcollege-mime-text {
+        border-top-color: #f1bf26;
+    }
+}
+
+// -----------------------------------------------------------
+// Icons view - Activity header.
+// -----------------------------------------------------------
+body.charteredcollege-resource-list,
+body.charteredcollege-resource-card {
+    // Establish 60% for title and 40% for icons in the activity header.
+    .asset-wrapper {
+        .charteredcollege-assettype {
+            display: inline-block;
+            width: 60%;
+            height: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .charteredcollege-header-card-icons {
+            display: inline-block;
+            width: 40%;
+            height: 100%;
+            max-height: 1.4em;
+        }
+    }
+    // Modify restriction icon size and position for course cards.
+    .charteredcollege-header-card {
+        padding-bottom: 1em;
+        .charteredcollege-header-card-icons {
+            a#charteredcollege-restriction {
+                padding: 0;
+                float: right;
+                display: inline-block;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                transition: all .2s ease-in-out;
+                cursor: pointer;
+                img#charteredcollege-restriction-icon {
+                    width: 20px;
+                    height: 20px;
+                    float: right;
+                }
+                &:active {
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                }
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+            .charteredcollege-asset-completion-tracking {
+                display: inline-block;
+                float: right;
+            }
+        }
+    }
+}
+
+// We need to establish to 100% the width for the icons for these activities, because the asset type will not appear in the card.
+// This will happen in list and card views.
+body.charteredcollege-resource-list {
+    li.modtype_label,
+    li.modtype_resource,
+    li.modtype_url,
+    li.modtype_imscp,
+    li.modtype_lightboxgallery,
+    li.modtype_scorm {
+        .charteredcollege-header-card-icons {
+            width: 100%;
+        }
+    }
+    li.charteredcollege-resource-long.modtype_folder .charteredcollege-header-card-icons {
+        width: 100%;
+    }
+}
+
+body.charteredcollege-resource-card {
+    li.modtype_label {
+        .charteredcollege-header-card-icons {
+            width: 100%;
+        }
+    }
+    li.charteredcollege-resource-long.modtype_folder .charteredcollege-header-card-icons {
+        width: 40%;
+    }
+}
+
+// -----------------------------------------------------------
+// Cards view - Ellipsis title and gradient content.
+// -----------------------------------------------------------
+body.charteredcollege-resource-card {
+    li.charteredcollege-resource.charteredcollege-resource-long {
+        height: 21em;
+    }
+    // Hide multimedia content on resource cards description.
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_url,
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_folder,
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_resource,
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_imscp,
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_lightboxgallery,
+    li.charteredcollege-resource.charteredcollege-resource-long.modtype_scorm {
+        div.contentafterlink div.no-overflow img,
+        div.contentafterlink div.no-overflow img.img-responsive.atto_image_button_text-bottom,
+        div.contentafterlink div.no-overflow iframe,
+        div.mediaplugin.mediaplugin_videojs {
+            display: none;
+        }
+    }
+
+    // Modify resource card structure to have ellipsis in the title and a gradient in the description.
+    .charteredcollege-resource-long {
+        /* mixin for multiline */
+        @mixin multiLineEllipsis($lineHeight: 1.25em, $lineCount: 1, $bgColor: white) {
+            overflow: hidden;
+            position: relative;
+            line-height: $lineHeight;
+            padding-right: 1em;
+            &:before {
+                content: '...';
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                width: 1em;
+                height: 1em;
+                margin-top: 0.2em;
+                background: $bgColor;
+            }
+        }
+
+        .charteredcollege-asset-link {
+            a.mod-link {
+                cursor: pointer;
+                p.instancename {
+                    max-height: 2.5em;
+                    @include multiLineEllipsis($lineHeight: 1.25em, $lineCount: 2, $bgColor: white);
+                }
+            }
+        }
+
+        div.contentafterlink {
+            .no-overflow {
+                word-wrap: break-word;
+                max-height: 4.2em;
+                overflow: hidden;
+                position: relative;
+            }
+            p.charteredcollege-resource-card-fadeout {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                margin: 0;
+                color: transparent;
+                // The blank space that achieve the transparent gradient needs to be unselectable.
+                user-select: none; /* supported by Chrome and Opera */
+                -webkit-user-select: none; /* Safari */
+                -khtml-user-select: none; /* Konqueror HTML */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                // Transparent needs to be set the color to white with 0 alpha to achieve the gradient. This is because for Safari
+                // transparent is a black color with 0 alpha and this will cause a bug.
+                background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, white);
+            }
+        }
+    }
+}
+
+// Clear none-cards after floated cards.
+.charteredcollege-resource-card li.activity {
+    clear: left;
+}
+
+// Resources to full width on tiny screen.
+@include media-breakpoint-down(sm) {
+    body.charteredcollege-resource-card li.charteredcollege-resource {
+        width: 99%;
+        margin: 1em auto;
+        height: auto;
+        background-image: none !important;
+
+        .activityinstance .activityicon {
+            display: inline;
+        }
+
+        .charteredcollege-asset-actions {
+            width: 250px;
+            .charteredcollege-asset-move,
+            .charteredcollege-edit-more-dropdown,
+            > a {
+                width: 25%;
+                text-align: left;
+                padding: 0;
+            }
+        }
+    }
+}
+
+// -------------------------
+// charteredcollege resources as list.
+// -------------------------
+.charteredcollege-resource-list li.charteredcollege-resource {
+    border: none;
+    margin: 0 1%;
+
+    .charteredcollege-assettype {
+        display: none;
+    }
+
+    .charteredcollege-asset-actions {
+        width: 250px;
+    }
+}
+
+// -------------------------
+// charteredcollege Activity
+// -------------------------
+.section li.charteredcollege-activity {
+    margin: 1em 1%;
+    padding-bottom: 2em;
+
+    &.modtype_forum,
+    &.modtype_chat,
+    &.modtype_hsuforum {
+        border-top-color: $color-communication;
+    }
+
+    &.modtype_assign,
+    &.modtype_assignment,
+    &.modtype_workshop {
+        border-top-color: $color-assignment;
+    }
+
+    &.modtype_choice,
+    &.modtype_feedback,
+    &.modtype_quiz,
+    &.modtype_survey,
+    &.modtype_questionnaire,
+    &.modtype_lesson {
+        border-top-color: $color-quiz;
+    }
+
+    &.modtype_data,
+    &.modtype_glossary,
+    &.modtype_wiki {
+        border-top-color: $color-wiki;
+    }
+
+    &.modtype_collaborate {
+        border-top-color: #c800a1;
+    }
+
+    &.modtype_folder {
+        border-top-color: #fed859;
+    }
+}
+
+// -------------------------
+// charteredcollege extended resources
+// -------------------------
+.section li.charteredcollege-extended-resource {
+    margin: 1em 1%;
+    padding-bottom: 1em;
+    border-top-color: #3bcedb;
+
+    &:hover {
+        background-size: 50px auto;
+    }
+
+    // Resource cards are clickable with data-href, so add cursor pointer.
+    .asset-wrapper {
+        @include clearfix;
+    }
+
+    &:not(.modtype_label) .asset-wrapper {
+        cursor: pointer;
+    }
+
+    .contentafterlink {
+        font-size: small;
+    }
+
+    &.charteredcollege-mime-document,
+    &.charteredcollege-mime-writer,
+    &.charteredcollege-mime-oth,
+    &.charteredcollege-mime-text {
+        border-top-color: $color-word;
+    }
+
+    &.charteredcollege-mime-powerpoint,
+    &.charteredcollege-mime-impress {
+        border-top-color: $color-powerpoint;
+    }
+
+    &.charteredcollege-mime-spreadsheet,
+    &.charteredcollege-mime-chart,
+    &.charteredcollege-mime-database,
+    &.charteredcollege-mime-calc {
+        border-top-color: $color-excel;
+    }
+
+    // ADOBE //
+    &.charteredcollege-mime-pdf,
+    &.charteredcollege-mime-eps,
+    &.charteredcollege-mime-flash {
+        border-top-color: $color-pdf;
+    }
+
+    &.charteredcollege-mime-flash {
+    }
+
+    // MULTIMEDIA //
+    &.charteredcollege-mime-mp3,
+    &.charteredcollege-mime-wav,
+    &.charteredcollege-mime-audio {
+        border-top-color: $color-audio;
+    }
+
+    &.charteredcollege-mime-mov,
+    &.charteredcollege-mime-wmv,
+    &.charteredcollege-mime-video,
+    &.charteredcollege-mime-quicktime,
+    &.charteredcollege-mime-mpeg,
+    &.charteredcollege-mime-avi {
+        border-top-color: $color-video;
+    }
+
+    &.modtype_lightboxgallery,
+    &.charteredcollege-mime-bmp {
+        border-top-color: #4abc96;
+    }
+
+    // MOODLE MODS //
+    &.modtype_url {
+        border-top-color: #999;
+    }
+
+    &.modtype_imscp,
+    &.modtype_scorm {
+        border-top-color: #f7981d;
+        background-image: url([[pix:core|/f/book]]);
+    }
+
+    &.modtype_folder {
+        border-top-color: #fed859;
+    }
+
+    // CODE & SYSTEM //
+    &.charteredcollege-mime-archive {
+        border-top-color: #fed859;
+    }
+
+    &.charteredcollege-mime-markup,
+    &.charteredcollege-mime-html,
+    &.charteredcollege-mime-sourcecode {
+        border-top-color: #f0652a;
+    }
+
+    &.charteredcollege-mime-text {
+        border-top-color: #f1bf26;
+    }
+}
+
+// -------------------------
+// Editing resources/activites
+// -------------------------
+/* EDIT SUMMARY */
+/* Make it obvious that you can edit a summary - Add text and some styles to that gear thing */
+#page-site-index .sitetopic > a:last-of-type,
+.summary .edit-summary {
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+    background-color: transparent;
+    font-family: $font-family-system;
+}
+
+#page-site-index {
+
+    .sitetopic > a {
+        &:last-of-type {
+            &:after {
+                content: attr(title);
+                display: block;
+            }
+            &:before {
+                content: " ";
+                background: transparent url("[[pix:theme|pencil]]") no-repeat 50% 50%;
+                display: block;
+                height: 3em;
+                width: 3em;
+                margin: 0.5em auto;
+            }
+        }
+
+        .iconsmall {
+            display: none;
+        }
+    }
+}
+
+// -------------------------
+// Activity & Resource metadata
+// -------------------------
+.charteredcollege-asset-meta {
+    clear: both;
+    padding: 0;
+}
+
+// Activity data - e.g. Due date & Group info
+.charteredcollege-completion-meta,
+.charteredcollege-group-tag,
+.charteredcollege-grouping-tag {
+    text-align: right;
+    font-size: $font-size-sm;
+    margin-bottom: 0.5em;
+
+    a {
+        padding: 0.5em;
+        font-weight: 500;
+
+        + a {
+            border-left: 1px solid;
+        }
+    }
+}
+
+.charteredcollege-completion-meta a:hover {
+    color: #fff;
+}
+
+// Activity dues date.
+.charteredcollege-due-date {
+    font-size: inherit;
+    font-weight: normal;
+    border-radius: 1em;
+}
+
+
+// Conditional information styled as fauz alerts.
+.charteredcollege-conditional-tag,
+.charteredcollege-stealth-tag,
+.charteredcollege-draft-tag,
+.charteredcollege-current-tag {
+    font-size: small;
+    font-family: $font-family-system;
+    background-color: #eee;
+    margin: 0.5em 0;
+    padding: 0.5em;
+
+    .availabilityinfo {
+        display: inline;
+        margin-left: 0.5em;
+    }
+
+    .svg-icon {
+        width: 1.3rem;
+        height: auto;
+    }
+
+    ul {
+        margin: 0 !important; // SHAME - lists in lists in lists in lists....
+        list-style: none;
+        padding: 0;
+    }
+
+    strong {
+        font-weight: normal;
+    }
+}
+
+.charteredcollege-completion-meta {
+    // SHAME - hsuforum sets div inline block to overcome other themes moodle css...
+    // We need to counteract this for charteredcollege for hsu forum for the moment.
+    display: block !important;
+    clear: both;
+}
+
+// Hide draft tag, unless asset has class draft (can be added by js).
+.charteredcollege-draft-tag,
+.charteredcollege-current-tag {
+    display: none !important; // SHAME - overcome bad overspecificity...
+    font-size: $font-size-sm;
+}
+
+// Show draft for mods & sections.
+.hidden .content .charteredcollege-draft-section,
+.charteredcollege-asset.draft .charteredcollege-draft-tag {
+    display: block !important; // SHAME - overcome bad overspecificity...
+}
+
+// Show current tag if parent has current class.
+.current .charteredcollege-current-tag {
+    display: block !important; // SHAME - overcome bad overspecificity...
+    color: $brand-success;
+}
+
+// Draft hide/show.
+.charteredcollege-asset {
+    .editing_show {
+        display: none;
+    }
+}
+
+// Hide hide/show when section is hidden.
+.hidden li.charteredcollege-asset {
+    .editing_hide,
+    .editing_show {
+        display: none !important;
+    }
+}
+
+// Assets with draft tag.
+.charteredcollege-asset {
+    &.draft,
+    &.stealth {
+        border-top-color: #eee !important;
+        // Options to hide/show in the dropdown.
+        .editing_hide {
+            display: none;
+        }
+        .editing_show {
+            display: block;
+        }
+    }
+}
+
+// Sections which are draft.
+.section.hidden {
+    opacity: 1 !important;
+
+    .content {
+        opacity: 0.75;
+    }
+
+    // Draft assets inside hidden section....
+    .charteredcollege-asset.draft .activityinstance {
+        opacity: 1;
+    }
+}
+
+// TODO - in course_renderer figure out if completion tracking enabled.
+// If so - add 1.3em gutter to slat to stop overlapping.
+/* Completion actions */
+
+span.autocompletion img,
+form.togglecompletion {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+
+    .btn {
+        font-size: 0.5em;
+    }
+}
+
+form.togglecompletion {
+    .btn.btn-link {
+        padding: 0;
+        border: 0 none transparent;
+        img.icon {
+            padding: 0;
+            margin-right: 6px;
+            width: 20px;
+            height: 20px;
+            max-width: none;
+        }
+    }
+    @include alakazam;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.1);
+    }
+
+    &.ajaxing {
+        &:after {
+            @include ajaxing(block, absolute, 20px, 6px);
+        }
+        div {
+            display: none;
+        }
+    }
+}
+
+/* Indent text associated with activity/resource. */
+.section li.charteredcollege-activity {
+    .contentafterlink,
+    .hsuforum-recent {
+        margin-left: (38px + 9px); // icon size (38px + margin);
+    }
+}
+
+// -------------------------
+// charteredcollege actions
+// -------------------------
+
+// All the editing options in one region.
+.charteredcollege-asset-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+
+    & > a,
+    .charteredcollege-edit-more-dropdown,
+    .charteredcollege-asset-move {
+        display: inline-block !important;
+        padding: 0.3em 7%;
+        text-align: center;
+        width: 33%;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            .svg-icon {
+                transform: scale(1.1);
+                border-color: $gray-light;
+            }
+        }
+    }
+
+    .charteredcollege-edit-more-dropdown .dropdown-toggle::after {
+        // Hide the bootstrap dropdown menu caret.
+        border-width: 0;
+        margin: 0;
+    }
+
+    .dropdown-toggle.charteredcollege-edit-asset-more.ajaxing {
+        &:after {
+            @include ajaxing(inline-block, relative, 26px, 7px);
+        }
+        img {
+            display: none;
+        }
+    }
+
+    .svg-icon {
+        border-radius: 100%;
+        border: 1px solid white;
+        width: 1.75em;
+        height: 1.75em;
+        background-color: white;
+        @include alakazam;
+    }
+
+    // When checkbox for moving is checked
+    input[type=checkbox]:checked + .svg-icon {
+        background-color: $brand-success !important;
+    }
+
+    .dropdown-menu {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+        border: 0;
+        padding: 0;
+    }
+
+    .dropdown-menu a {
+        font-weight: inherit;
+        font-size: 0.8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.modtype_page, .modtype_label, .modtype_book {
+    .charteredcollege-asset-actions {
+        bottom: 0px;
+    }
+}
+
+// Modify H3 size so the chapter title inside a book activity has a correct size between the other words.
+.modtype_book .asset-wrapper .charteredcollege-asset-content .summary-text.row h4 {
+    font-size: 1em;
+}
+
+.charteredcollege-resource {
+    .charteredcollege-asset-actions {
+        width: 100%;
+
+        & > a,
+        .charteredcollege-edit-more-dropdown,
+        label {
+            padding: 0.3em 7%;
+            text-align: center;
+            width: 33%;
+        }
+    }
+}
+
+/* reset some moodle shame */
+.moodle-actionmenu,
+.moodle-actionmenu > ul,
+.moodle-actionmenu > ul > li {
+    display: block;
+}
+
+.moodle-actionmenu > ul > li {
+    display: inline-block;
+}
+/*  actions at the footer of an element */
+.section .charteredcollege-asset .actions {
+    clear: both;
+    float: none;
+    width: 100%;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    @include clearfix;
+
+    .moodle-actionmenu {
+        width: 100%;
+        max-width: 320px;
+
+        .menubar {
+            text-align: right;
+        }
+
+        & > ul {
+            margin: 0;
+        }
+    }
+}
+
+/* add bg colour for actions when editing */
+.editing .actions {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+/* remove bg colour for actions when menu shown */
+.action-menu-shown .actions {
+    background-color: transparent;
+}
+
+// draghandle
+.section .charteredcollege-asset .editing_move {
+    padding: 0 2%;
+}
+
+// -------------------------
+//  Edit button
+// -------------------------
+// that div with all the extraneous moodle editing code in.
+
+div.commands ul.menubar {
+    margin: 0;
+}
+
+// i know. SHAME selector :(
+.jsenabled .charteredcollege-asset .moodle-actionmenu[data-enhance] .toggle-display.textmenu {
+    text-decoration: none;
+    padding: 0.5em 1em;
+    margin: 0;
+    text-align: right;
+    background-color: #fff;
+}
+
+// hide moodle caret
+.toggle-display .caret {
+    display: none;
+}
+
+.toggle-display.textmenu:after {
+    content: "☰";
+    margin-left: 0.5rem;
+}
+
+.action-menu-shown .toggle-display.textmenu {
+    &:after {
+        content: " ";
+        background: transparent url("[[pix:theme|close_x]]") repeat;
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+// last min css for marks code changes - make edit button block when editing...
+.action-menu-shown .moodle-actionmenu > ul > li {
+    display: block;
+}
+
+// -------------------------
+//  Editing menu
+// -------------------------
+// hide to start, and set some defaults
+
+.editing .charteredcollege-asset {
+    .actions .menu {
+        position: relative;
+        display: block;
+        visibility: hidden;
+        overflow: hidden;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #fff;
+        transform: scale(0);
+        transform-origin: 100% 100%;
+        transition: transform 0.3s;
+    }
+
+    // when menu shown
+    &.action-menu-shown .actions {
+
+        // hide move & groups
+        .editing_move,
+        [class*='group'] {
+            display: none;
+        }
+
+        // ignore inline js styles
+        .menu[style] {
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+        }
+
+        .menu {
+            visibility: visible;
+            transform: scale(1);
+            transition: transform 0.3s;
+            padding: 0 0.5em;
+            margin: 0;
+            width: auto;
+            max-width: 320px;
+            height: auto;
+        }
+    }
+}
+
+input.titleeditor {
+    max-width: 100%;
+    padding: 0.3em;
+    margin: 0;
+}
+
+span.editinstructions {
+    /*rtl:remove*/
+    position: absolute;
+    /*rtl:raw:
+    position: relative;
+    */
+    top: 0;
+    margin-top: -22px;
+    margin-left: 30px;
+    font-size: $font-size-sm;
+    padding: .1em .4em;
+    background-color: #fff;
+    color: $state-info-text;
+    text-decoration: none;
+    z-index: 9999;
+    font-family: $font-family-system;
+}
+
+/* forum unread posts button */
+.charteredcollege-asset .unread {
+    clear: both;
+    display: block;
+    background-color: transparent;
+}
+
+.editing .dndupload-preview .mod-indent {
+    display: block;
+}
+
+// increase/decrease sections buttons
+// remove moodle padding
+
+.path-course-view a.reduce-sections {
+    padding-left: 0;
+}
+
+
+// -------------------------
+// Course completion settings page.
+// -------------------------
+
+#page-course-completion {
+    .mform .fcontainer .fitem_fcheckbox {
+        display: flex;
+
+        .fitemtitle {
+            order: 2;
+        }
+
+        .fcheckbox {
+            order: 1;
+            margin-right: 1em;
+        }
+
+        .fcheckbox input {
+            margin: 0;
+        }
+    }
+}
+
+// -------------------------
+// Grade tree calculation input padding.
+// -------------------------
+#page-grade-edit-tree-calculation input[type="text"] {
+    margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+/**
+ * Fixes to recent course activity page.
+ * Note - excuse the awful CSS used here but terribly inconsistent markup across modules necessitates it.
+ */
+#page-course-recent #region-main div.generalbox {
+    td,
+    > div {
+        font-family: $font-family-system;
+        font-size: $font-size-base;
+        margin-top: 0.5rem;
+
+        // Workshop - this is the best way we can possibly target the workshop divs as sadly only one div has
+        // a class (submission).
+        &[style],
+        &[style] + div.submission {
+            padding: 0 !important; // Please forgive !important - required to remove inline style in workshop.
+        }
+
+        // Glossary.
+        div.glossary-activity-content {
+            float: left;
+            margin-left: 10px;
+        }
+
+        // Questionnaire.
+        span div a img,
+        // Glossary.
+        > div a img,
+        // Workshop.
+        > a img {
+            margin-left: 25px;
+        }
+
+        + div.submission {
+            // Workshop data positioning.
+            margin-left: 10px;
+            // Get rid of bold title in workshop.
+            strong {
+                font-weight: 400;
+            }
+        }
+    }
+
+    table.forum-recent {
+        // Forum - get rid of bold title.
+        div.title.bold {
+            font-weight: 300;
+        }
+    }
+
+    h3 {
+        font-size: inherit;
+    }
+}
+
+// -------------------------
+// Course recent activity icons - set size to same as avatars.
+// -------------------------
+
+#page-course-recent {
+
+    h3 {
+        margin-bottom: 0;
+
+        & > img.icon.smallicon {
+            width: 35px;
+            height: 35px;
+        }
+
+    }
+
+    #region-main td.userpicture {
+        width: 70px;
+        vertical-align: middle;
+
+        img {
+            margin-left: 25px;
+        }
+    }
+
+    #region-main form[id^="mform1"] > div.form-group.fitem {
+        margin-left: 0;
+    }
+
+    fieldset {
+        abbr[title]:after {
+            content: '';
+        }
+    }
+
+    .mform .containsadvancedelements {
+
+        .fcontainer>.form-group {
+            width: 100%;
+            >div:first-child {
+                max-width: 30%;
+                min-width: 27%;
+                margin-right: 1em;
+                >.form-inline.felement {
+                    display: inline-block;
+                }
+            }
+        }
+
+        .fcontainer>.form-group:nth-child(5) {
+            >div:first-child {
+                display: inline-block;
+            }
+            div.form-inline {
+                display: inline-block;
+            }
+        }
+
+        .advanced.show {
+            display: inline-block;
+            >div:first-child {
+                display: inline-block;
+                .float-md-right.text-nowrap {
+                    float: right;
+                }
+            }
+            >.form-inline.felement {
+                display: inline-block;
+                max-width: 60%;
+            }
+        }
+    }
+}
+
+// -------------------------
+// Course resource icons - set to sensible size.
+// -------------------------
+#page-course-resources table.mod_index td img {
+    max-width: 2rem;
+}
+
+// -------------------------
+// Course participants page.
+// -------------------------
+
+@include media-breakpoint-down(lg) {
+    .userlist {
+        table.controls tr td.right {
+            text-align: left;
+        }
+
+        table.controls tr td {
+            padding: 0 0 1em !important;
+        }
+
+        table.controls tr td:empty {
+            display: none;
+        }
+
+        table.controls tr td,
+        .singleselect {
+            display: block;
+            width: auto;
+        }
+    }
+}
+
+// -------------------------
+// Moving things in charteredcollege
+// -------------------------
+@keyframes fadeup {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.path-course-view {
+    li.state-visible,
+    #page-header,
+    #region-main {
+        animation-name: fadeup;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        animation-duration: 0.68s;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+// Hide section drop on moving section, the following section and when not moving.
+.section-drop,
+.section-moving a.section-drop,
+.section-moving + .section .section-drop:not(.partial-render) {
+    display: none;
+}
+
+// Section moving drop zone.
+.section-drop {
+    height: 125px;
+    margin: 1em 0;
+    clear: both;
+    border: 2px dashed $gray-lighter;
+    font-family: $font-family-system;
+    text-align: center;
+    display: none;
+}
+
+.section-drop,
+.charteredcollege-move-note {
+    background: transparent url("[[pix:theme|move_here]]") no-repeat 50% 80%;
+    background-size: 2.5em 2.5em;
+}
+
+.charteredcollege-move-section {
+    .section-drop {
+        display: block;
+
+        &:hover {
+            border-color: $state-success-text;
+        }
+    }
+}
+
+#charteredcollege-footer-alert {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    background-image: none !important;
+    outline: none !important;
+    // for animation..
+    max-height: 0;
+    overflow: hidden;
+    @include alakazam;
+    .spinner-three-quarters {
+        margin-left: 1em;
+        width: 1em;
+        height: 1em;
+    }
+    &.charteredcollege-footer-alert-visible {
+        padding: 0.5em 0;
+        max-height: 200px;
+        z-index: 2;
+    }
+}
+
+.charteredcollege-footer-alert-title {
+    text-transform: capitalize;
+    color: #fff !important;
+    display: inline-block;
+    padding: 1em;
+    margin-left: 4%;
+    width: 50%;
+}
+
+.charteredcollege-footer-alert-cancel {
+    float: right;
+    margin-right: 4%;
+    color: #fff !important;
+    opacity: 0.8;
+    visibility: hidden;
+
+    &:hover {
+        color: #fff;
+        opacity: 1;
+    }
+
+    &.state-visible {
+        visibility: visible;
+    }
+}
+
+// Small screen moving cancel link.
+@include media-breakpoint-down(md) {
+    .charteredcollege-footer-alert-cancel {
+        margin-right: 3em;
+    }
+}
+
+// Body class when moving
+.charteredcollege-move-inprogress {
+    // The asset we are moving
+    .charteredcollege-moving,
+    .charteredcollege-modchooser,
+    .edit-summary,
+    .charteredcollege-asset-actions .charteredcollege-edit-asset,
+    .charteredcollege-asset-actions .charteredcollege-edit-more-dropdown,
+    .charteredcollege-section-editing,
+    .charteredcollege-modchooser,
+    .charteredcollege-dropzone {
+        display: none !important;
+    }
+
+    &.charteredcollege-move-section {
+        .charteredcollege-asset-actions,
+        .charteredcollege-asset .togglecompletion {
+            display: none !important;
+        }
+    }
+
+    .actions {
+        display: none;
+    }
+
+    .charteredcollege-asset .contentafterlink .row > div {
+        position: unset;
+    }
+}
+
+.charteredcollege-asset {
+    &.movefinished {
+        animation: fadein 0.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+}
+
+.charteredcollege-move-note,
+.charteredcollege-drop.asset-drop {
+    display: none;
+}
+// Show when moving
+// Asset dropzones.
+.charteredcollege-move-asset {
+    .charteredcollege-asset:not(.asset-moving) {
+        border: 2px dashed $gray-light;
+    }
+
+    .charteredcollege-resource:not(.asset-moving) {
+        border: 2px dashed white;
+    }
+
+    .charteredcollege-asset:not(.asset-moving) .charteredcollege-move-note {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        text-align: center;
+        padding: 1em;
+        display: block;
+    }
+
+    .charteredcollege-drop.asset-drop {
+        display: block;
+        clear: both;
+        border: 2px dashed $gray-light;
+        font-size: 2em;
+        color: $gray;
+        font-family: $font-family-system;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+#charteredcollege-light-box {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $modal-backdrop-bg;
+    z-index: 1000000;
+    overflow-y: scroll;
+
+    &.state-visible {
+        display: block;
+    }
+
+    #charteredcollege-light-box-close {
+        position: absolute;
+        z-index: 2;
+        top: 0.5em;
+        right: 0.5em;
+    }
+
+    .charteredcollege-icon-close:before {
+        background: transparent url([[pix:theme|close_x]]) no-repeat 50% 50%;
+    }
+
+    .resourcecontent audio {
+        margin: 1em auto;
+    }
+}
+
+#charteredcollege-light-box-content {
+    width: 100%;
+    padding: 1em 4%;
+}
+
+@include media-breakpoint-up(md) {
+    .charteredcollege-lightbox-description {
+        overflow-y: auto;
+        max-height: 80vh;
+    }
+}
+
+// Adding support for bootstrap 4 progress bar.
+.dndupload-progress-outer {
+    @extend .progress;
+    display: block;
+}
+
+.dndupload-progress-inner {
+    @extend .progress-bar;
+    display: block;
+}
+
+// Fix urlselect in grade report.
+.path-grade-report #maincontent + .urlselect {
+    left: 71vw;
+}
+
+body.path-course-index {
+    .add-course-btn-container {
+        margin-top: 1em;
+        width: 100%;
+        padding-top: 1em;
+        padding-left: 15px;
+    }
+    .course_category_tree {
+        margin: 15px;
+    }
+}
+
+// Fix options lenght in menu.
+.dropdown.charteredcollege-edit-more-dropdown .dropdown-menu.show {
+    display: table;
+}
+
+.modtype_page .asset-wrapper .charteredcollege-asset-completion-tracking {
+    margin-right: 0.3em;
+}
+
+// Forum grading modal.
+#page-mod-forum-view {
+    .layout.fullscreen {
+        height: 100vh;
+        position: fixed;
+        top:0px;
+        left: 0px;
+        z-index: 1040;
+        width: 100vw;
+        margin: 0;
+        opacity: 1;
+        background: #FFFF;
+        & > div {
+            height: 100%;
+            width: 100%;
+        }
+        .grader-grading_navigation.navbar {
+            box-shadow:0 2px 4px rgba(0,0,0,.08)
+        }
+    }
+
+    .grader-grading-panel {
+        right: 0px;
+        box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.08);
+        padding: 0;
+        visibility: visible;
+        opacity: 1;
+        overflow-y: auto;
+    }
+}
