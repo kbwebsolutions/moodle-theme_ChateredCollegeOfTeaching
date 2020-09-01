@@ -1,0 +1,85 @@
+/*
+//
+// Styles to be used in the STYLES SETTINGS Atto editor
+//
+// In Moodle's Site Administration STYLES SETTINGS set the style using JSON
+// Example:
+//
+// {
+//    "title": "EEF Header",
+//    "type": "inine | block",
+//    "classes": "eefheader"
+//  }
+//
+ */
+
+
+.eefheader {
+  border-left: 3px solid $brand-primary;
+  color: $brand-primary;
+  padding: 1em 0.5em;
+  margin: 1em 0;
+}
+
+.requiredheader {
+  border-left: 3px solid $brand-secondary;
+  color: $brand-primary;
+  padding: 1em 0.5em;
+  margin: 1em 0;
+}
+
+.readingtime {
+  background-image: url("[[pix:theme|styles/timetoread]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+}
+.activitytime {
+  background-image: url("[[pix:theme|styles/timeactivity]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+}
+.videotime {
+  background-image: url("[[pix:theme|styles/videotime]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+ }
+.forumtime {
+  background-image: url("[[pix:theme|styles/forumtime]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+}
+.availablefrom {
+  background-image: url("[[pix:theme|styles/calendar]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+}
+.estimatedtime {
+  background-image: url("[[pix:theme|styles/stopwatch]]");
+  background-repeat: no-repeat;
+  padding-left: 4em;
+  line-height: 3em;
+  margin: 1em 0;
+  font-style: italic;
+}
+#page-mod-lesson-view #region-main .contents .imglink,
+imglink {
+  display: inline;
+  a {
+    border-bottom: none;
+  }
+}
