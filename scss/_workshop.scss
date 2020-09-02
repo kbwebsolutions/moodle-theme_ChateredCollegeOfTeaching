@@ -1,0 +1,59 @@
+/**
+ * Workshop specific theming
+ *
+ */
+
+#page-mod-workshop-submission,
+#page-mod-workshop-assessment {
+  .submission-full {
+    border-bottom: 1px dashed #cccccc ;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+
+    .header {
+      border-bottom: 3px solid $color-assignment;
+      background-color: #ffffff;
+    }
+  }
+
+  .assessment-full {
+    border-bottom: none ;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+
+    .header {
+      background-color: #ffffff;
+      border-bottom: 2px dashed $brand-secondary;
+    }
+  }
+
+  .grade {
+    display: none;
+  }
+}
+
+#page-mod-workshop-view {
+    #workshop-viewlet-yourgrades {
+      display: none;
+    }
+}
+
+.assessment-form {
+  fieldset {
+    background-color: #C8EAF1;
+    padding:1em;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
+
+    legend,
+    label {
+      display:none;
+    }
+
+    .form-group {
+      background-color: #ffffff;
+    }
+  }
+}
