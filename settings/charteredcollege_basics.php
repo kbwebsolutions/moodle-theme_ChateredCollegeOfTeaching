@@ -32,7 +32,7 @@ if (!during_initial_install() && !empty(get_site()->fullname)) {
 $name = 'theme_charteredcollege/themecolor';
 $title = new lang_string('themecolor', 'theme_charteredcollege');
 $description = '';
-$default = '#ff7f41'; // Blackboard Open LMS orange.
+$default = '#1b2342'; // Blackboard Open LMS orange.
 $previewconfig = null;
 $setting = new \theme_charteredcollege\admin_setting_configcolorwithcontrast(
     \theme_charteredcollege\admin_setting_configcolorwithcontrast::BASICS, $name, $title, $description, $default, $previewconfig);
@@ -96,7 +96,7 @@ $charteredcollegesettings->add($setting);
 $name = 'theme_charteredcollege/headingfont';
 $title = new lang_string('headingfont', 'theme_charteredcollege');
 $description = new lang_string('headingfont_desc', 'theme_charteredcollege');
-$default = '"Roboto"';
+$default = '"museo-sans"';
 $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $charteredcollegesettings->add($setting);
