@@ -3453,8 +3453,8 @@ table th img.iconhelp {
 @include media-breakpoint-up(md) {
     #charteredcollege-featured-courses .row div {
         /* Center and restrict width for when only one course */
-        max-width: 50%;
-        margin: 0 auto;
+        //max-width: 50%;
+        margin: 0;
     }
 }
 
@@ -3465,55 +3465,111 @@ table th img.iconhelp {
 }
 .charteredcollege-featured-courses-heading {
     padding: 1em 0;
+    text-align: left;
+    color: #fff;
 }
 
 #charteredcollege-featured-courses {
     background-color: $charteredcollege-featured-courses;
 }
 #charteredcollege-featured-courses a.charteredcollege-featured-course {
-    border-radius: 4px;
+    //border-radius: 4px;
 }
 #charteredcollege-featured-courses .charteredcollege-featured-course-title {
-    border-radius: 0 0 4px 4px;
+    //border-radius: 0 0 4px 4px;
 }
 
 /* Featured course link. */
 .charteredcollege-featured-course {
     display: block;
-    height: 300px;
+    height: 500px;
     position: relative;
     background-color: #ccc;
     margin-bottom: 1em;
     @include bg-cover;
     @include alakazam;
 
-    &:hover {
-        transform: scale(1.03);
-        box-shadow:
-            0 2px 2px 0 rgba(0, 0, 0, 0.14),
-            0 3px 1px -2px rgba(0, 0, 0, 0.2),
-            0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
-        .charteredcollege-featured-course-title {
-            text-decoration: underline;
-        }
-    }
 }
+
+/* Featured course category */
+.charteredcollege-featured-course-category {
+	display: block;
+	text-align: left;
+    min-height: 35%;
+    width: 100%;
+    position: absolute;
+    background-color: $charteredcollege-featured-courses;
+    bottom: 0;
+    padding: 10px 4px 0px 0px;
+    font-size: $font-size-sm;
+    font-variant: all-small-caps;
+
+}
+
+.charteredcollege-featured-courses-btn {
+    padding: 1.5rem 0;
+    float:right;
+}
+
+#browse-all-courses-featured-courses{
+    background-color: $brand-secondary;
+    font-size: 1.1rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 2em;
+    padding: 0 2rem;
+    border: 1px solid $brand-secondary;
+    font-weight: 500;
+
+}
+
+/*Course Category Colours */
+	.course-cat-1 {
+		color: #EF464E;
+	}
+	.course-cat-2 {
+		color: #FC6868;
+	}
+	.course-cat-3 {
+		color: #98D4DF;
+	}
+	.course-cat-4 {
+		color: #833045;
+	}
+	.course-cat-5 {
+		color: #1cbff1;
+	}
+	.course-cat-6 {
+		color: #FFD15B;
+	}
 
 /* Featured course title. */
 .charteredcollege-featured-course-title {
     display: block;
+	text-align: left;
     min-height: 25%;
     width: 100%;
-    background-color: white;
+    background-color: $charteredcollege-featured-courses;
+    color: #fff;
     position: absolute;
     bottom: 0;
-    padding: 0.5em 4%;
-    max-height: 15.2em;
-    overflow-y: hidden;
-    &:hover {
-        overflow-y: scroll;
-    }
+    padding: 0px 4px 0px 0px;
+    font-size: 1.3em;
+}
+
+/* Featured course Summary. */
+.charteredcollege-featured-course-summary {
+    display: block;
+    font-size: 1rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    width: 100%;
+    background-color: #1b2342;
+    position: absolute;
+    bottom: 0;
+    padding: 0px 4px 40px 0px;
+    overflow: hidden;
 }
 
 // Scrolling gradebook fixes

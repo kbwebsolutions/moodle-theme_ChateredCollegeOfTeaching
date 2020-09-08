@@ -35,7 +35,16 @@
     }
 }}
 <div id="charteredcollege-featured-courses" class="text-center">
-    <h2 class="charteredcollege-featured-courses-heading">{{heading}}</h2>
+    <div class="row">
+        <div class="col-8">
+            <h2 class="charteredcollege-featured-courses-heading">{{heading}}</h2>
+        </div>
+        <div class="col-4">
+            {{#browseallurl}}
+                <p class="charteredcollege-featured-courses-btn text-center float-right"><a id="browse-all-courses-featured-courses" aria-label="{{#str}}browseallcourses, theme_charteredcollege{{/str}}" href="{{browseallurl}}" class="btn btn-primary">{{#str}}featuredcoursesbrowseall, theme_charteredcollege{{/str}}</a></p>
+            {{/browseallurl}}
+        </div>
+    </div>
     <div class="row text-center">
 
         {{#cards}}
@@ -43,10 +52,6 @@
         {{/cards}}
 
     </div>
-
-    {{#browseallurl}}
-    <p class="text-center"><a id="browse-all-courses-featured-courses" aria-label="{{#str}}browseallcourses, theme_charteredcollege{{/str}}" href="{{browseallurl}}" class="btn btn-primary">{{#str}}featuredcoursesbrowseall, theme_charteredcollege{{/str}}</a></p>
-    {{/browseallurl}}
 
     {{#editurl}}
     <p class="text-center"><a href="{{editurl}}" class="btn btn-primary">{{#str}}featuredcoursesedit, theme_charteredcollege{{/str}}</a></p>

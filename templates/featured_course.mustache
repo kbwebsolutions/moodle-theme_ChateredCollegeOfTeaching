@@ -24,12 +24,17 @@
         "number" : "1",
         "url" : "http://someurl.local",
         "coverimageurl" : "http://someurl.local",
+        	"category" : "CTEACH"
         "title" : "Super cool course!"
+        	"summary" : "This course if for cool people"
     }
 }}
 <div class="{{colclass}}" id="charteredcollege-featured-course-{{number}}">
     <a href="{{url}}" class="charteredcollege-featured-course" style="background-image: url({{coverimageurl}});">
         <!--Card content-->
-        <span class="charteredcollege-featured-course-title">{{title}}</span>
+        	<span class="charteredcollege-featured-course-category course-cat-{{categoryid}}">{{category}}</span>
+		<span class="charteredcollege-featured-course-title">{{title}}</span>
+        <!--	//<span class="charteredcollege-featured-course-summary">{{summary}}</span> -->
+
     </a>
 </div>

@@ -120,7 +120,8 @@ class featured_courses implements \renderable, \templatable {
             $url = new moodle_url('/course/view.php?id=' .$course->id);
             $coverimageurl = local::course_coverimage_url($course->id);
             $coverimageurl = $coverimageurl ?: null;
-            $this->cards[] = new featured_course($url, $coverimageurl, $course->fullname, $i, $this->colclass);
+            	$category = $DB->get_field_select("course_categories", "name", "id=$course->category");
+            $this->cards[] = new featured_course($url, $coverimageurl, $category, $course->category, $course->fullname, $course->summary, $i, $this->colclass);
         }
     }
 }
