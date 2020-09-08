@@ -24,11 +24,13 @@
 // charteredcollege specific overrides to Boost settings from
 // theme/boost/scss/bootstrap/variables.scss
 
-$font-size-root: 18px;
+$font-size-root: 14px;
 $font-size-lg:   1.25rem;
 $font-size-med: .9rem;
 $font-size-sm:   .8rem;
 $font-size-xs:   .7rem;
+
+$font-size-base: $font-size-root;
 
 // -------------------------
 // Course cards size in the user dashboard.
