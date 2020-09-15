@@ -83,7 +83,7 @@ if (!empty($custommenu)) {
 ?>
 
 <div class="row">
-    <div id="mrooms-footer" class="helplink col-sm-6">
+<!--    <div id="mrooms-footer" class="helplink col-sm-6">
         <small>
             <?php
             if ($OUTPUT->page_doc_link()) {
@@ -93,7 +93,7 @@ if (!empty($custommenu)) {
             echo get_string('poweredbyrunby', 'theme_charteredcollege', date('Y', time()));
             ?>
         </small>
-    </div>
+    </div> -->
     <div class="langmenu col-sm-6 text-right">
         <?php echo $OUTPUT->lang_menu(); ?>
     </div>
