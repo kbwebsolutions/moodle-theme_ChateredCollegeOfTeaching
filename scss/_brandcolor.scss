@@ -396,7 +396,10 @@ $custom-menu-text-color: rgb(255, 255, 255) !default; // Need to define this wit
     }
 
     // Catch all for mods we do not have colours for.
-    li.charteredcollege-resource,
+    li.charteredcollege-resource, {
+        border-left-color: $brand-primary;
+    }
+
     li.charteredcollege-activity {
         border-top-color: $brand-primary;
     }
