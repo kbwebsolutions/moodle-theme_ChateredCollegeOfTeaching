@@ -5,7 +5,6 @@
 /* stylelint-disable declaration-no-important*/
 
 #charteredcollege-pm {
-    background-color: #eee;
     overflow-x: hidden; // Prevent scrollbars.
     display: none;
 
@@ -16,10 +15,6 @@
 
 #primary-nav {
     display: none;
-}
-
-body.charteredcollege-pm-open {
-    background-color: #eee;
 }
 
 // -------------------------
@@ -65,7 +60,7 @@ body.charteredcollege-pm-open {
 
     h1,
     a {
-        color: white !important;
+        color: $brand-primary !important; //white
         padding-top: 0; // No top padding on close icon and links.
     }
 
