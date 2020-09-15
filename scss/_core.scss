@@ -30,7 +30,11 @@ html {
 }
 
 #moodle-page {
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+.custom-select {
+	border-radius: 8px;
 }
 
 // charteredcollege Layout yo...
@@ -848,6 +852,7 @@ nav #mr-nav
 footer #moodle-footer
 
  ****************************/
+#mr-nav,
 #page-header,
 #region-main,
 #moodle-footer,
@@ -879,6 +884,7 @@ footer #moodle-footer
     position: fixed;
     width: 100vw;
     z-index: 23;
+    padding: .5em 4%;
     background-color: $nav-bg;
     top: 0;
 
@@ -3145,7 +3151,7 @@ body:not(.pagelayout-course) #moodle-footer {
     padding-bottom: 1em;
     clear: both;
     color: $gray-lighter;
-    background-color: $body-color;
+    background-color: $brand-primary;
 }
 
 #charteredcollege-footer-content,
@@ -3507,7 +3513,8 @@ table th img.iconhelp {
     padding: 1em 4%;
 }
 .charteredcollege-featured-courses-heading {
-    padding: 1em 0;
+    //padding: 1em 0;
+    margin-bottom: 2rem;
     text-align: left;
     color: #fff;
 }
