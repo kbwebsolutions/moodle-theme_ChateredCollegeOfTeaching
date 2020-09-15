@@ -99,66 +99,79 @@
 <div class="row charteredcollege-login-row"  id="logins">
     <div class="charteredcollege-login charteredcollege-login-option charteredcollege-login-cell" id="base-login">
         {{#logourl}}
-        <h2 class="charteredcollege-logo-sitename text-center">{{sitename}}</h2>
+       <!-- <h2 class="charteredcollege-logo-sitename text-center">{{sitename}}</h2> -->
         {{/logourl}}
         {{^logourl}}
         <h2 class="text-center">{{sitename}}</h2>
         {{/logourl}}
 
-        {{#error}}
-            <div class="loginerrors">
-                <a href="#" id="loginerrormessage" class="accesshide">{{error}}</a>
-                <div class="alert alert-danger" role="alert">{{error}}</div>
-            </div>
-        {{/error}}
-
-        <form action="{{loginurl}}" method="post" id="login" {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}} class="charteredcollege-custom-form">
-            <input type="hidden" name="logintoken" value="{{logintoken}}">
-            <input id="anchor" type="hidden" name="anchor" value="">
-            <script>document.getElementById('anchor').value = location.hash;</script>
-
-            <label for="username" class="sr-only">
-                {{^canloginbyemail}}
-                    {{#str}} username {{/str}}
-                {{/canloginbyemail}}
-                {{#canloginbyemail}}
-                    {{#str}} usernameemail {{/str}}
-                {{/canloginbyemail}}
-            </label>
-            <input type="text" name="username" id="username"
-                class="form-control"
-                value="{{username}}"
-                placeholder={{#quote}}{{^canloginbyemail}}{{#str}}username{{/str}}{{/canloginbyemail}}{{#canloginbyemail}}{{#str}}usernameemail{{/str}}{{/canloginbyemail}}{{/quote}}>
-            <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
-            <input type="password" name="password" id="password" value=""
-                class="form-control"
-                placeholder={{#quote}}{{#str}}password{{/str}}{{/quote}}
-                {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}}>
-            <br>
-            <button type="submit" class="btn btn-primary btn-block" id="loginbtn">{{#str}}login{{/str}}</button>
-            <a class="small btn btn-link btn-block" href="{{forgotpasswordurl}}">{{#str}}forgotten{{/str}}</a>
-        </form>
-    </div>
-    {{#hasidentityproviders}}
-        <div class="charteredcollege-login charteredcollege-login-option charteredcollege-login-cell" id="alt-login">
-                <h5>{{#str}} potentialidps, auth {{/str}}</h5>
-                <div class="potentialidplist">
-                    {{#identityproviders}}
-                        <div class="potentialidp">
-                            <a href="{{url}}"  class="btn btn-primary btn-block" title={{#quote}}{{name}}{{/quote}}>
-                                {{#iconurl}}
-                                    <img class="auth-icon" src="{{iconurl}}" onerror="this.style.display='none'"/>
-                                {{/iconurl}}
-                                {{^iconurl}}
-                                    {{#pix}} /i/permissions, core {{/pix}}
-                                {{/iconurl}}
-                                {{name}}
-                            </a>
-                        </div>
-                    {{/identityproviders}}
-                </div>
+    {{#error}}
+        <div class="loginerrors">
+            <a href="#" id="loginerrormessage" class="accesshide">{{error}}</a>
+            <div class="alert alert-danger" role="alert">{{error}}</div>
         </div>
-    {{/hasidentityproviders}}
+    {{/error}}
+    <div class="card">
+        <div class="card-block">
+            <div class="card-body">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-5 left-side">
+                        <h5>Members Login</h5>
+                        <p>Chartered College of Teaching members should use the button below to login to MyPD</p>
+                        {{#hasidentityproviders}}
+                           <!-- <h5>{{#str}} potentialidps, auth {{/str}}</h5>-->
+                            <div class="potentialidplist">
+                                {{#identityproviders}}
+                                    <div class="potentialidp">
+                                        <a class="btn btn-primary" href="{{url}}" title={{#quote}}{{name}}{{/quote}}>
+                                            {{#iconurl}}
+                                                <!--<img class="auth-icon" src="{{iconurl}}"/>-->
+                                            {{/iconurl}}
+                                            {{^iconurl}}
+                                                {{#pix}} /i/permissions, core {{/pix}}
+                                            {{/iconurl}}
+                                            {{name}}
+                                        </a>
+                                    </div>
+                                {{/identityproviders}}
+                            </div>
+                        {{/hasidentityproviders}}
+                    </div>
+                    <div class="col-md-5 right-side">
+                        <h6>Visitor Login</h6>
+                        <p>If you have been provided with a specific username and password for our Early Career Teacher or Chartered Teacher programme, please login here.</p>
+                        <form action="{{loginurl}}" method="post" id="login" {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}} class="mypd-custom-form">
+        <input type="hidden" name="logintoken" value="{{logintoken}}">
+        <input id="anchor" type="hidden" name="anchor" value="">
+        <script>document.getElementById('anchor').value = location.hash;</script>
+
+        <label for="username" class="sr-only">
+            {{^canloginbyemail}}
+                {{#str}} username {{/str}}
+            {{/canloginbyemail}}
+            {{#canloginbyemail}}
+                {{#str}} usernameemail {{/str}}
+            {{/canloginbyemail}}
+        </label>
+        <input type="text" name="username" id="username"
+            class="form-control"
+            value="{{username}}"
+            placeholder={{#quote}}{{^canloginbyemail}}{{#str}}username{{/str}}{{/canloginbyemail}}{{#canloginbyemail}}{{#str}}usernameemail{{/str}}{{/canloginbyemail}}{{/quote}}>
+        <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
+        <input type="password" name="password" id="password" value=""
+            class="form-control"
+            placeholder={{#quote}}{{#str}}password{{/str}}{{/quote}}
+            {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}}>
+        <br>
+        <button type="submit" class="btn btn-outline-primary btn-block" id="loginbtn">{{#str}}login{{/str}}</button>
+        <a class="small btn btn-link btn-block" href="{{forgotpasswordurl}}">{{#str}}forgotten{{/str}}</a>
+    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 

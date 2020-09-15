@@ -19,15 +19,10 @@
  @copyright Copyright (c) 2016 Blackboard Inc. (http://www.blackboard.com)
  @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 }}
-<div class="subcontent potentialidps">
-    <h6>{{# str }} potentialidps, auth {{/ str }}</h6>
-    <div class="potentialidplist">
+<div class="btn subcontent potentialidps">
+    <div class=" potentialidplist">
         {{#potentialidps}}
-            <div class="potentialidp"><a class="btn btn-primary btn-block" href="{{{url}}}">
-            {{#icon}}
-                <img class="auth-icon" src="{{icon}}"/>
-            {{/icon}}
-            {{name}}</a></div>
+            <div style="width:100%" class="potentialidp"><a type="submit" class="btn btn-primary" href="{{{url}}}">{{name}}</a></div>
         {{/potentialidps}}
     </div>
 </div>

@@ -110,6 +110,22 @@ table.boxwidthwide {
 
 #page-login-index,
 #page-login-signup {
+
+    .left-side {
+        padding-top:3em;
+        padding-bottom:3em;
+    }
+    .right-side {
+        p,
+        label,
+        input {
+            font-size: $font-size-med;
+        }
+    }
+    #page-header {
+        min-height: 0px;
+        border-bottom: 0px;
+    }
     #region-main {
         max-width: 100%;
         padding: 0 4% 2em;
@@ -120,7 +136,8 @@ table.boxwidthwide {
     // The login box.
     .charteredcollege-login {
         padding: 1em 4%;
-        max-width: 30rem;
+        margin: 2em auto;
+        max-width: 60rem;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.9);
         #password {
@@ -1018,6 +1035,26 @@ footer #moodle-footer
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left center;
+    }
+}
+
+
+// Logout icon trigger.
+#charteredcollege-logout-icon {
+    @include alakazam;
+    .mypd-logout-icon {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 5;
+        stroke-miterlimit: 10;
+    }
+    // Animate and change colour.
+    &:hover,
+    &:focus {
+        transform: scale(0.8, 0.8);
+        .mypd-logout-icon {
+            fill: currentColor;
+        }
     }
 }
 

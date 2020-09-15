@@ -100,7 +100,17 @@ body.charteredcollege-pm-open {
     .charteredcollege-pm-content {
         width: 23em;
         margin: 2em;
+        border: 2px solid $border-color;
+        box-shadow: 1px 2px 6px 2px $border-color;
     }
+    .card {
+        margin:1em auto;
+        border: 2px solid $border-color;
+        box-shadow: 1px 2px 6px 2px $border-color;
+        max-width: 60em;
+    }
+
+
     label {
         font-weight: 300;
         letter-spacing: 0.03rem;
@@ -111,16 +121,28 @@ body.charteredcollege-pm-open {
         bottom: 0;
         right: 2%;
     }
-    @media (max-width: 767px) {
-        .charteredcollege-pm-section {
-            display: grid;
-            flex-wrap: wrap;
+
+    .left-side {
+        padding-top: 3em;
+    }
+
+
+    .right-side {
+        p,
+        label,
+        input {
+            font-size: $font-size-med;
         }
-        .vertical-divider {
-            display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .charteredcollege-pm-login-form {
+        .left-side {
+            border-right: 1px solid $brand-primary;
         }
-        .horizontal-divider {
-            display: block;
+        .card-body {
+            padding: 1.25em 0;
         }
     }
 }
