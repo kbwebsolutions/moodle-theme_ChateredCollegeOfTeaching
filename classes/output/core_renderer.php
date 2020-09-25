@@ -199,16 +199,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
             return '';
         }
         // @codingStandardsIgnoreStart
-        $gearicon = '<svg xmlns="http://www.w3.org/2000/svg" id="charteredcollege-admin-icon" viewBox="0 0 100 100">
-                        <title>'.get_string('admin', 'theme_charteredcollege').'</title>
-                        <path d="M85.2,54.9c0.2-1.4,0.3-2.9,0.3-4.5c0-1.5-0.1-3-0.3-4.5l9.6-7.5c0.9-0.7,1-1.9,0.6-2.9l-9.1-15.8c-0.6-1-1.8-1.3-2.8-1
-                        l-11.3,4.6c-2.4-1.8-4.9-3.3-7.7-4.5l-1.8-12c-0.1-1-1-1.9-2.2-1.9H42.3c-1.1,0-2.1,0.9-2.2,1.9l-1.7,12.1c-2.8,1.1-5.3,2.7-7.7,4.5
-                        l-11.3-4.6c-1-0.4-2.2,0-2.8,1L7.5,35.6c-0.6,1-0.3,2.2,0.6,2.9l9.6,7.5c-0.2,1.4-0.3,2.9-0.3,4.5c0,1.5,0.1,3,0.3,4.5L8,62.4
-                        c-0.9,0.7-1,1.9-0.6,2.9l9.1,15.8c0.6,1,1.8,1.3,2.8,1l11.3-4.6c2.4,1.8,4.9,3.3,7.7,4.5L40,94.1c0.1,1,1,1.9,2.2,1.9h18.2
-                        c1.1,0,2.1-0.9,2.2-1.9L64.3,82c2.8-1.1,5.3-2.7,7.7-4.5l11.3,4.6c1,0.4,2.2,0,2.8-1l9.1-15.8c0.6-1,0.3-2.2-0.6-2.9
-                        C94.6,62.4,85.2,54.9,85.2,54.9z M51.4,34.6c8.8,0,15.9,7.1,15.9,15.9s-7.1,15.9-15.9,15.9s-15.9-7.1-15.9-15.9S42.6,34.6,51.4,34.6
-                        z" class="charteredcollege-gear-icon"/>
-                    </svg>';
+       $hamburgericon = '<svg xmlns="http://www.w3.org/2000/svg" id="charteredcollege-admin-icon" viewBox="0 0 100 100">
+                            <style>
+                                .st0{fill:#FFFFFF;}
+                            </style>
+                            <path d="M8 22h84v9.3H8V22m0 23.3h84v9.3H8v-9.3m0 23.4h84V78H8v-9.3z" class="charteredcollege-gear-icon"/>
+                           </svg>';
+
          // @codingStandardsIgnoreEnd
         $url = '#inst' . $settingslink->instanceid;
         $attributes = array(
@@ -220,7 +217,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'aria-label' => get_string('admin', 'theme_charteredcollege'),
         );
 
-        return html_writer::link($url, $gearicon, $attributes);
+        return html_writer::link($url, $hamburgericon, $attributes);
     }
 
 
@@ -754,6 +751,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'link' => s($CFG->wwwroot). '/user/preferences.php',
             'title' => get_string('preferences')
         ];
+        $badgeslink = [
+            'link' => s($CFG->wwwroot).'/badges/mybadges.php',
+            'title' => get_string('badges')
+        ];
         $logoutlink = [
             'id' => 'charteredcollege-pm-logout',
             'link' => s($CFG->wwwroot).'/login/logout.php?sesskey='.sesskey(),
@@ -762,9 +763,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         $quicklinks = [
             $profilelink,
-            $dashboardlink,
+            //$dashboardlink,
             $preferenceslink,
-            $gradelink
+            $gradelink,
+            $badgeslink
         ];
 
         $courseid = $PAGE->course->id;
@@ -1975,5 +1977,26 @@ HTML;
             $spacer .= "<style> {$css} </style>";
         }
         return $spacer;
+    }
+
+    /**
+     * This renders the Back to section button at the bottom of all activities.
+     * Uses bootstrap compatible html.
+     * @param string $coverimage
+     */
+    public function backToSection() {
+        global $COURSE, $CFG;
+
+        require_once($CFG->dirroot.'/course/lib.php');
+
+        $chosenElem = end($this->page->navbar->get_items());
+        $chosenElemSectionNumber = $this->get_section_for_id($chosenElem->parent->key);
+
+        if (!empty($chosenElemSectionNumber)) {
+            //return '<a class="btn btn-secondary" style="margin:1em 0" href="'.$chosenElem->parent->action.'">Back To '.$chosenElem->parent->text.'</a>';
+            return '<hr style="clear:both"/><a class="btn btn-secondary" style="margin:1em 0" href="'.$CFG->wwwroot.'/course/view.php?id='.$COURSE->id.'#section-'.$chosenElemSectionNumber.'">Back To '.$chosenElem->parent->text.'</a>';
+        } else {
+            return '<hr style="clear:both"/><a class="btn btn-secondary" style="margin:1em 0" href="'.$CFG->wwwroot.'/course/view.php?id='.$COURSE->id.'">Back to module homepage</a>';
+        }
     }
 }
