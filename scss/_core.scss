@@ -1375,13 +1375,16 @@ header#page-header
 @include media-breakpoint-up(md) {
     #page-site-index #page-mast {
         width: 50%;
-        margin: 20vh 4%;
+        margin: 10vh auto;
+        text-align: center;
+        display: block;
     }
 }
 
 #page-mast .charteredcollege-login-button {
-    display: inline-block;
-    margin-top: 1em;
+    //display: inline-block;
+    //margin-top: 1em;
+    @include pill-btn;
 }
 
 // -------------------------
@@ -3613,7 +3616,7 @@ table th img.iconhelp {
     position: absolute;
     bottom: 0;
     padding: 0px 4px 0px 0px;
-    font-size: 1.3em;
+    font-size: $font-size-lg;
 }
 
 /* Featured course Summary. */
