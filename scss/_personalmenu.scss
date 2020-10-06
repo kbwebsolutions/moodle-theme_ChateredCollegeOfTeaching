@@ -324,6 +324,11 @@
     @include bg-cover;
     @include alakazam();
 
+    .coursecard-category {
+        font-size: $font-size-xs;
+        padding-bottom: 1rem;
+        font-variant: all-small-caps;
+    }
     // Course card data - below the image.
     .coursecard-body {
         background-color: white;
