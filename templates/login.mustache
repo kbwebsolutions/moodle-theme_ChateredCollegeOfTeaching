@@ -17,30 +17,19 @@
                             <h5>Members Login</h5>
                             <p>Chartered College of Teaching members should use the button below to login to MyPD</p>
                             {{#altlogins}}
-                                {{{.}}}
-                                <br><hr><br>
+                                <div class="charteredcollege-pm-content">
+                                    {{{.}}}
+                                </div>
                             {{/altlogins}}
                         </div>
-                            <div class="col-md-5 right-side">
-                                <h6>Visitor Login</h6>
-                                <p>If you have been provided with a specific username and password for our Early Career Teacher or Chartered Teacher programme, please login here.</p>
-                            <form action='{{action}}'  method='post'>
-                                <input type="hidden" name="logintoken" value="{{logintoken}}">
-                                <div class="form-group">
-                                    <label class="form-control-label" for='username' >{{#str}}username{{/str}}</label>
-                                    <input class="form-control" autocapitalize='off' type='text' name='username' id='username' placeholder='Username' required>
+                        <div class="col-md-5 right-side">
+                            <h6>Visitor Login</h6>
+                            <p>If you have been provided with a specific username and password for our Early Career Teacher or Chartered Teacher programme, please login here.</p>
+                            {{#baselogin}}
+                                <div>
+                                    {{{.}}}
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-control-label" for='password'>{{#str}}password{{/str}}</label>
-                                    <input class="form-control" type='password' name='password' id='password' placeholder='Password' required>
-                                </div>
-                                <br>
-                                <input type='submit' class="btn btn-outline-primary btn-block" value='{{#str}}login{{/str}}'>
-                            </form>
-
-                            <div id="charteredcollege-pm-login-help">
-                                <a class="btn btn-primary" href="{{action}}"><i class="fa fa-info-circle" aria-hidden="true"></i> {{#str}}help{{/str}}</a>
-                            </div>
+                            {{/baselogin}}
                         </div>
                     </div>
                 </div>
