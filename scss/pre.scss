@@ -164,3 +164,24 @@ $cursor-disabled: not-allowed;
 // -------------------------
 
 $standard-border: 1px solid #dedede;
+
+// -------------------------
+// Kieran's Mixins.
+// -------------------------
+
+@mixin pill-btn {
+    background-color: $brand-secondary;
+    font-size: 1.1rem;
+    line-height: 3em;
+    border-radius: 2em;
+    padding: 0 2em;
+    border: 1px solid $brand-secondary;
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+        background-color: darken($brand-secondary, 8%);
+        border-color: darken($brand-secondary, 8%);
+        border: none;
+    }
+}
