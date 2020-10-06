@@ -57,7 +57,7 @@ echo html_writer::link($CFG->wwwroot, $sitefullname, $attrs);
 
     echo $OUTPUT->personal_menu_trigger();
     echo $OUTPUT->render_message_icon();
-    echo $OUTPUT->render_notification_popups();
+   // echo $OUTPUT->render_notification_popups();
     if(isloggedin()) {
         $logoutpix = $OUTPUT->image_url('logout', 'theme');
         $logouturl = $CFG->wwwroot.'/login/logout.php?sesskey='.sesskey();
