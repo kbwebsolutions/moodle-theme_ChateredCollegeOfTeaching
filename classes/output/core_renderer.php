@@ -766,7 +766,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             //$dashboardlink,
             $preferenceslink,
             $gradelink,
-            $badgeslink
+            //$badgeslink
         ];
 
         $courseid = $PAGE->course->id;
@@ -800,7 +800,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             }
             $quicklinks[] = $switchrole;
         }
-        $quicklinks[] = $logoutlink;
+        //$quicklinks[] = $logoutlink;
 
         // Build up courses.
         $courseservice = course::service();
