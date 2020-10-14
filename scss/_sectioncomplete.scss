@@ -1,0 +1,18 @@
+.section li.modtype_sectioncomplete {
+  border: 0px;
+  width:100%;
+
+  .asset-wrapper {
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: static;
+    padding: .5em 1em;
+  }
+  .charteredcollege-header-card-icons {
+    width: 100%;
+  }
+  .charteredcollege-assettype,{
+    display: none;
+  }
+}
