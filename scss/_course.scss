@@ -598,10 +598,10 @@ li.section:focus {
     display: block;
     position: relative;
     padding: 0;
-    margin: 0 auto;
+    margin: 0 0.5rem;
     height: auto;
     font-family: $font-family-system;
-    background-color: #fff;
+    background-color: transparent;
     border: 1px solid $gray-lighter;
     border-top-width: 0.3em;
 
@@ -630,7 +630,8 @@ li.section:focus {
     .activityinstance {
         padding: 0;
         height: auto;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: transparent;
+        margin-bottom: 0.5em;
         @include clearfix;
 
         .activityicon {
@@ -646,6 +647,7 @@ li.section:focus {
         .charteredcollege-asset-link {
             font-size: 1em;
             margin: 0;
+            padding: 0.5em 0;
             @include alakazam;
 
             // The link itself.
@@ -857,15 +859,20 @@ li.section:focus {
 // charteredcollege resources as cards.
 // -------------------------
 body.charteredcollege-resource-card li.charteredcollege-resource {
-    height: 200px;
+    //height: 200px;
     width: 31%;
     margin: 1%;
     float: left;
     clear: none;
-    background-image: url([[pix:theme|file]]);
+    //background-image: url([[pix:theme|file]]);
     background-repeat: no-repeat;
     background-position: 50% 70%;
     background-size: 38px auto;
+    border-left-width:5px;
+    border-top:0px;
+    border-right:0px;
+    border-bottom:0px;
+
 
     &:hover {
         background-size: 50px auto;
@@ -875,10 +882,14 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     .asset-wrapper {
         @include clearfix;
         .charteredcollege-header-card {
-            padding-bottom: 1.5em;
+            //padding-bottom: 1.5em;
         }
         .charteredcollege-asset-actions {
             display: flex;
+          //  background-color: $light-grey;
+        }
+        .activityinstance {
+          //  background-color: $light-grey;
         }
     }
 
@@ -895,42 +906,44 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-writer,
     &.charteredcollege-mime-oth,
     &.charteredcollege-mime-text {
-        border-top-color: $color-word;
-        background-image: url([[pix:core|/f/document]]);
+        border-left-color: $color-word;
+        background-color: $light-grey;
+        //background-image: url([[pix:core|/f/document]]);
     }
 
     &.charteredcollege-mime-powerpoint,
     &.charteredcollege-mime-impress {
-        border-top-color: $color-powerpoint;
-        background-image: url([[pix:core|/f/powerpoint]]);
+        border-left-color: $color-powerpoint;
+        //background-image: url([[pix:core|/f/powerpoint]]);
     }
 
     &.charteredcollege-mime-spreadsheet,
     &.charteredcollege-mime-chart,
     &.charteredcollege-mime-database,
     &.charteredcollege-mime-calc {
-        border-top-color: $color-excel;
-        background-image: url([[pix:core|/f/spreadsheet]]);
+        border-left-color: $color-excel;
+        background-color: $light-grey;
+        //background-image: url([[pix:core|/f/spreadsheet]]);
     }
 
     // ADOBE //
     &.charteredcollege-mime-pdf,
     &.charteredcollege-mime-eps,
     &.charteredcollege-mime-flash {
-        border-top-color: $color-pdf;
-        background-image: url([[pix:core|/f/pdf]]);
+        border-left-color: $color-pdf;
+        //background-image: url([[pix:core|/f/pdf]]);
     }
 
     &.charteredcollege-mime-flash {
-        background-image: url([[pix:core|/f/flash]]);
+        //background-image: url([[pix:core|/f/flash]]);
     }
 
     // MULTIMEDIA //
     &.charteredcollege-mime-mp3,
     &.charteredcollege-mime-wav,
     &.charteredcollege-mime-audio {
-        border-top-color: $color-audio;
-        background-image: url([[pix:core|/f/audio]]);
+        border-left-color: $color-audio;
+        //background-image: url([[pix:core|/f/audio]]);
     }
 
     &.charteredcollege-mime-mov,
@@ -939,52 +952,52 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-quicktime,
     &.charteredcollege-mime-mpeg,
     &.charteredcollege-mime-avi {
-        border-top-color: $color-video;
-        background-image: url([[pix:core|/f/video]]);
+        border-left-color: $color-video;
+        //background-image: url([[pix:core|/f/video]]);
     }
 
     &.modtype_lightboxgallery,
     &.charteredcollege-mime-bmp {
-        border-top-color: #4abc96;
-        background-image: url([[pix:core|/f/image]]);
+        border-top-color: $color-assignment;
+        //background-image: url([[pix:core|/f/image]]);
     }
 
     // MOODLE MODS //
     &.modtype_url {
-        border-top-color: #999;
-        background-image: url([[pix:core|/f/url]]);
+        border-top-color: $color-url;
+        //background-image: url([[pix:core|/f/url]]);
     }
 
     &.modtype_imscp,
     &.modtype_scorm {
-        border-top-color: #f7981d;
-        background-image: url([[pix:core|/f/book]]);
+        border-top-color: $color-scorm;
+        //background-image: url([[pix:core|/f/book]]);
     }
 
     &.modtype_scorm {
-        background-image: url([[pix:scorm|icon]]);
+        //background-image: url([[pix:scorm|icon]]);
     }
 
     &.modtype_imscp {
-        background-image: url([[pix:imscp|icon]]);
+        //background-image: url([[pix:imscp|icon]]);
     }
 
     &.modtype_folder {
-        border-top-color: #fed859;
-        background-image: url([[pix:core|/f/folder]]);
+        border-top-color: $color-folder;
+       // background-image: url([[pix:core|/f/folder]]);
     }
 
     // CODE & SYSTEM //
     &.charteredcollege-mime-archive {
-        border-top-color: #fed859;
-        background-image: url([[pix:core|/f/archive]]);
+        border-top-color: $color-folder;
+        //background-image: url([[pix:core|/f/archive]]);
     }
 
     &.charteredcollege-mime-markup,
     &.charteredcollege-mime-html,
     &.charteredcollege-mime-sourcecode {
-        border-top-color: #f0652a;
-        background-image: url([[pix:core|/f/sourcecode]]);
+        border-top-color: $color-pdf;
+        //background-image: url([[pix:core|/f/sourcecode]]);
     }
 
     &.charteredcollege-mime-text {
@@ -1083,7 +1096,7 @@ body.charteredcollege-resource-card {
 // -----------------------------------------------------------
 body.charteredcollege-resource-card {
     li.charteredcollege-resource.charteredcollege-resource-long {
-        height: 21em;
+       // height: 21em;
     }
     // Hide multimedia content on resource cards description.
     li.charteredcollege-resource.charteredcollege-resource-long.modtype_url,
@@ -1130,7 +1143,7 @@ body.charteredcollege-resource-card {
                 cursor: pointer;
                 p.instancename {
                     max-height: 2.5em;
-                    @include multiLineEllipsis($lineHeight: 1.25em, $lineCount: 2, $bgColor: white);
+                   // @include multiLineEllipsis($lineHeight: 1.25em, $lineCount: 2, $bgColor: white);
                 }
             }
         }
@@ -1234,7 +1247,8 @@ body.charteredcollege-resource-card {
     &.modtype_quiz,
     &.modtype_survey,
     &.modtype_questionnaire,
-    &.modtype_lesson {
+    &.modtype_lesson,
+    &.modtype_hvp {
         border-top-color: $color-quiz;
     }
 
@@ -1274,6 +1288,9 @@ body.charteredcollege-resource-card {
         cursor: pointer;
     }
 
+    &.modtype_url {
+        border-top-color: $color-url;
+    }
     .contentafterlink {
         font-size: small;
     }
