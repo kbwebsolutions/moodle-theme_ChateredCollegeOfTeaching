@@ -1375,7 +1375,7 @@ header#page-header
 @include media-breakpoint-up(md) {
     #page-site-index #page-mast {
         width: 50%;
-        margin: 10vh auto;
+        margin: 10vh auto 5vh auto;
         text-align: center;
         display: block;
     }

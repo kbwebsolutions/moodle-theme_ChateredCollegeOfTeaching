@@ -29,3 +29,103 @@
     text-decoration: none;
   }
 }
+
+//Accordion Styles
+.md-accordion {
+
+	i {
+		float:right;
+	}
+	.card {
+		border: 0px;
+	}
+	.card-header {
+		background-color: transparent;
+	}
+
+	[data-toggle="collapse"] .fa:before {
+		content: "\f0d8";
+	}
+
+	[data-toggle="collapse"].collapsed .fa:before {
+		content: "\f0d7";
+	}
+}
+
+//Basic Styles
+
+b, strong {
+	font-weight: 600;
+}
+
+// Not enrolled course page.
+
+#page-enrol-index {
+
+	hr {
+		display:none;
+	}
+
+	.courseimage {
+		display:none;
+	}
+
+	.coursebox {
+		border-bottom: 2px solid $brand-secondary;
+
+		.info {
+			display:none;
+		}
+		.content .summary {
+			width: 100%;
+		}
+	}
+
+	#notice {
+		background-color: #ffffff;
+		font-size: 1em;
+	}
+}
+
+// Front page Last Access Course section
+
+.frontpagepersonalisation {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	height: 500px;
+	align-items: center;
+	width: 100%;
+	margin:auto;
+	background: rgb(255,255,255);
+	background: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(27,35,66,1) 40%);
+	overflow: hidden;
+	padding: 1em 4%;
+
+	.lastaccessedcourse {
+		width: 65%;
+		background-color: transparent;
+		height:100%;
+		padding: 2em;
+		color: #333;
+	}
+	.upcomingdeadlines {
+		width: 30%;
+		height: 100%;
+		padding: 2em 0 1rem;
+		color: #111;
+
+		.upcomingdisplay {
+			border-radius: 10px;
+			background-color: #f5f5bf;
+			padding: 1rem;
+			height: 100%;
+			-webkit-box-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+			-moz-box-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+			box-shadow: 0 1px 2px #000;
+			-webkit-transform: rotate(-.5deg);
+			-moz-transform: rotate(-.5deg);
+			-o-transform: rotate(-.5deg);
+		}
+	}
+}

@@ -21,6 +21,7 @@ defined('MOODLE_INTERNAL') || die();
 
 use moodle_url;
 use stdClass;
+use theme_charteredcollege\local;
 use theme_charteredcollege\output\core_renderer;
 use \theme_charteredcollege\user_forums,
     \theme_charteredcollege\course_total_grade,
@@ -35,6 +36,7 @@ require_once($CFG->dirroot.'/grade/lib.php');
 require_once($CFG->dirroot.'/grade/report/overview/lib.php');
 require_once($CFG->dirroot.'/mod/forum/lib.php');
 require_once($CFG->dirroot.'/lib/enrollib.php');
+require_once($CFG->dirroot.'/course/lib.php');
 
 /**
  * General local charteredcollege functions.
@@ -2431,5 +2433,27 @@ SQL;
         }
 
         return true;
+    }
+
+    public static function get_last_course($courseid) {
+        global $DB;
+
+        $latestcourse = course_get_recent_courses($courseid, 1,0);
+
+        foreach($latestcourse as $course) {
+            $title = $course->fullname;
+            $url = new moodle_url('/course/view.php?id=' .$course->id);
+            $coverimageurl = local::course_coverimage_url($course->id);
+            $category = $DB->get_field_select("course_categories", "name", "id=$course->category");
+            $catid = $course->category;
+        }
+
+        $lastcourseaccessed = '<div class="lastaccessedcourse">';
+        $lastcourseaccessed .= '<a href="'.$url.'" class="charteredcollege-featured-course" style="background-image: url('.$coverimageurl.');">';
+        $lastcourseaccessed .= '<span class="charteredcollege-featured-course-category course-cat-'.$catid.'">'.$category.'</span>';
+		$lastcourseaccessed .= '<span class="charteredcollege-featured-course-title">'.$title.'</span>';
+		$lastcourseaccessed .= '</a></div>';
+
+        return $lastcourseaccessed;
     }
 }
