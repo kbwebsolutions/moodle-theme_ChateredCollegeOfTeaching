@@ -51,7 +51,7 @@ $brand-fellow:          #ffd15b;
 //$enable-flex:               true;
 
 $brand-primary:         #1b2342 !default;
-$brand-secondary:       #EE7EA0;
+$brand-secondary:       #D93760;
 $brand-success:         #8bc34a;
 $brand-warning:         #ff9800;
 $brand-danger:          #e91e63;
@@ -96,6 +96,17 @@ $state-danger-border:            fade-out($brand-danger, 0.9);
 $footer-color-bg:                #f1f0ee;
 
 $user-content-max-width:         43.5em;
+
+// ----------------------------------
+// Calendar colour variables defined.
+//-----------------------------------
+
+$calendarEventCategoryColor: #d8bfd8 !default; // Pale purple.
+$calendarEventCourseColor: $brand-secondary !default; // Pale red. Original Colour was #ffd3bd
+$calendarEventGlobalColor: #d6f8cd !default; // Pale green.
+$calendarEventGroupColor: #fee7ae !default; // Pale yellow.
+$calendarEventUserColor: #dce7ec !default; // Pale blue.
+$calendarEventOtherColor: #ced4da !default; // Pale gray.
 
 // -------------------------
 // Button customisations
@@ -184,5 +195,6 @@ $standard-border: 1px solid #dedede;
         background-color: darken($brand-secondary, 8%);
         border-color: darken($brand-secondary, 8%);
         border: none;
+        text-decoration: none;
     }
 }
