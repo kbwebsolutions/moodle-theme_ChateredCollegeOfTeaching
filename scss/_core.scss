@@ -134,9 +134,7 @@ table.boxwidthwide {
         max-width: 100%;
         padding: 0 4% 2em;
     }
-    #moodle-footer {
-        margin-top: 0;
-    }
+
     // The login box.
     .charteredcollege-login {
         padding: 1em 4%;
@@ -1632,6 +1630,12 @@ header#page-header
 }
 
 /* Calandar */
+
+#page-calendar-view {
+    #region-main {
+        min-width: 85%;
+    }
+}
 span.calendar_event_global,
 li.calendar_event_global:before,
 td.calendar_event_global > a {
@@ -1643,9 +1647,14 @@ span.calendar_event_course,
 li.calendar_event_course:before,
 td.calendar_event_course > a {
 
-    //salmon
-    background-color: salmon;
-    color: #fff !important;
+    //Seconday color
+    background-color: $brand-secondary;
+
+}
+.calender_event_course {
+    .modal-title {
+        color: #fff;
+    }
 }
 
 span.calendar_event_group,
@@ -1743,9 +1752,20 @@ li.calendar_event_user:before {
 }
 
 .path-calendar {
+
+	block-region-side-pre {
+		display:none;
+	}
+
+	.maincalendar .calendarmonth {
+		width: 98%;
+		min-height:500px;
+		margin: 10px auto;
+	}
+
     .maincalendar .calendarmonth td,
     .maincalendar .calendarmonth th {
-        border-color: #fff;
+        border: 1px dotted $body-color;
         height: 1em;
     }
 }
@@ -2857,7 +2877,7 @@ table#user-grades tr.avg td.cell {
     }
 
     .charteredcollege-form-required fieldset {
-        max-width: 43.5em;
+       // max-width: 43.5em; // TODO - KRB taken out so that the summary box stretched along the width
         margin: 1em 0;
     }
 }
@@ -3151,11 +3171,17 @@ body:not(.pagelayout-course) #moodle-footer {
 }
 
 #moodle-footer {
+    margin-top: 1em;
     padding-top: 3em;
     padding-bottom: 1em;
     clear: both;
     color: $gray-lighter;
     background-color: $brand-primary;
+
+    #page-footer {
+            float: right;
+    }
+
 }
 
 #charteredcollege-footer-content,
