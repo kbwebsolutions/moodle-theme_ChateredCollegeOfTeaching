@@ -1226,6 +1226,9 @@ header#page-header
             color: white;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
+        h1 a:focus {
+            background-color: transparent;
+        }
     }
     // Add a bg colur to the toc in page header.
     #course-toc {
@@ -3179,7 +3182,18 @@ body:not(.pagelayout-course) #moodle-footer {
     background-color: $brand-primary;
 
     #page-footer {
-            float: right;
+        float: right;
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            background-color: $brand-primary;
+            color: $brand-secondary;
+        }
+        a:focus {
+            background-color: $brand-primary;
+            color: lighten($brand-secondary, 10%);
+        }
     }
 
 }
