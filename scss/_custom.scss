@@ -62,6 +62,11 @@ b, strong {
 
 #page-enrol-index {
 
+	#region-main {
+		h2:first-of-type {
+			display:none;
+		}
+	}
 	hr {
 		display:none;
 	}
@@ -116,16 +121,20 @@ b, strong {
 		color: #111;
 
 		.upcomingdisplay {
-			border-radius: 10px;
 			background-color: #f5f5bf;
 			padding: 1rem;
 			height: 100%;
 			-webkit-box-shadow: 0 2px 12px rgba(0, 0, 0, .5);
 			-moz-box-shadow: 0 2px 12px rgba(0, 0, 0, .5);
 			box-shadow: 0 1px 2px #000;
-			-webkit-transform: rotate(-.5deg);
-			-moz-transform: rotate(-.5deg);
-			-o-transform: rotate(-.5deg);
+			overflow: hidden;
+			overflow-y: scroll;
 		}
+	}
+}
+
+#mod_quiz_navblock {
+	.othernav {
+		display:none;
 	}
 }
