@@ -68,9 +68,9 @@ class pagemod_controller extends controller_abstract {
             'objectid' => $page->id,
             'context' => $context
         ));
-        $event->add_record_charteredcollegeshot('course_modules', $cm);
-        $event->add_record_charteredcollegeshot('course', $COURSE);
-        $event->add_record_charteredcollegeshot('page', $page);
+        $event->add_record_snapshot('course_modules', $cm);
+        $event->add_record_snapshot('course', $COURSE);
+        $event->add_record_snapshot('page', $page);
         $event->trigger();
 
         // Update 'viewed' state if required by completion system.
