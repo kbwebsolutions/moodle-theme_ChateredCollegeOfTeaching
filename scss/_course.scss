@@ -914,6 +914,7 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-powerpoint,
     &.charteredcollege-mime-impress {
         border-left-color: $color-powerpoint;
+        background-color: $light-grey;
         //background-image: url([[pix:core|/f/powerpoint]]);
     }
 
@@ -931,6 +932,7 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-eps,
     &.charteredcollege-mime-flash {
         border-left-color: $color-pdf;
+        background-color: $light-grey;
         //background-image: url([[pix:core|/f/pdf]]);
     }
 
@@ -943,6 +945,7 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-wav,
     &.charteredcollege-mime-audio {
         border-left-color: $color-audio;
+        background-color: $light-grey;
         //background-image: url([[pix:core|/f/audio]]);
     }
 
@@ -953,6 +956,7 @@ body.charteredcollege-resource-card li.charteredcollege-resource {
     &.charteredcollege-mime-mpeg,
     &.charteredcollege-mime-avi {
         border-left-color: $color-video;
+        background-color: $light-grey;
         //background-image: url([[pix:core|/f/video]]);
     }
 
@@ -1029,7 +1033,7 @@ body.charteredcollege-resource-card {
     }
     // Modify restriction icon size and position for course cards.
     .charteredcollege-header-card {
-        padding-bottom: 1em;
+        //padding-bottom: 1em;
         .charteredcollege-header-card-icons {
             a#charteredcollege-restriction {
                 padding: 0;
@@ -1657,7 +1661,6 @@ form.togglecompletion {
         border: 1px solid white;
         width: 1.75em;
         height: 1.75em;
-        background-color: white;
         @include alakazam;
     }
 
