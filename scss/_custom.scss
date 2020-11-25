@@ -121,7 +121,7 @@ b, strong {
 		color: #111;
 
 		.upcomingdisplay {
-			background-color: #f5f5bf;
+			background-color: #f8f8f8;
 			padding: 1rem;
 			height: 100%;
 			-webkit-box-shadow: 0 2px 12px rgba(0, 0, 0, .5);
@@ -129,6 +129,9 @@ b, strong {
 			box-shadow: 0 1px 2px #000;
 			overflow: hidden;
 			overflow-y: scroll;
+			h4 {
+				color: #222222
+			}
 		}
 	}
 }

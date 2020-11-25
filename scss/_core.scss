@@ -1355,6 +1355,9 @@ header#page-header
         display: inline-block;
         padding: 1em 2%;
         margin: 10em 4% 1em;
+        h1 {
+            color: $brand-primary;
+        }
     }
 
     #moodle-page {
