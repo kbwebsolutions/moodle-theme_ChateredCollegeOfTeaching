@@ -3589,6 +3589,11 @@ table th img.iconhelp {
     margin-bottom: 1em;
     @include bg-cover;
     @include alakazam;
+    &:hover {
+        transform: scale(1.01);
+        border:none;
+
+    }
 
 
 }
