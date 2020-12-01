@@ -61,9 +61,11 @@ echo html_writer::link($CFG->wwwroot, $sitefullname, $attrs);
     if(isloggedin()) {
         $logoutpix = $OUTPUT->image_url('logout', 'theme');
         $logouturl = $CFG->wwwroot.'/login/logout.php?sesskey='.sesskey();
-        $logouticon = '<img id="mypd-logout-icon" class="svg-icon mypd-logout-icon" title="' .$logoutpix. '" alt="' .$logoutpix. '" src="' .$logoutpix. '">';
+        $logouticon = '<img id="charteredcollege-logout-icon" class="svg-icon charteredcollege-logout-icon" title="' .$logoutpix. '" alt="' .$logoutpix. '" src="' .$logoutpix. '">';
         echo html_writer::link($logouturl, $logouticon);
+        //echo $OUTPUT->render_logout_link();
     }
+
     $settingslink = new settings_link();
     echo $OUTPUT->render($settingslink);
     echo '<span class="hidden-md-down">';
