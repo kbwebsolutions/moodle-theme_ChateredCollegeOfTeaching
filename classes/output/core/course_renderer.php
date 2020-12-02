@@ -245,7 +245,10 @@ class course_renderer extends \core_course_renderer {
             // Asset link.
             $assetlink .= '<h3 class="charteredcollege-asset-link">'.$cmname.'</h3>';
         }
-
+        // Meta data field.
+        //$contentpart = '<div class="contentafterlink">';
+        $metadata=$this->get_extra_mod_data($mod, 'approxtime');
+        //$contentpart .= '</div>';
         // Asset content.
         $contentpart = $this->course_section_cm_text($mod, $displayoptions);
 
@@ -332,7 +335,7 @@ class course_renderer extends \core_course_renderer {
 
         // Build output.
         $postcontent = '<div class="charteredcollege-asset-meta" data-cmid="'.$mod->id.'">'.$assetmeta.$mod->afterlink.'</div>';
-        $content = '<div class="charteredcollege-asset-content">'.$assetlink.$postcontent.$contentpart.$charteredcollegecompletionmeta.$groupmeta.'</div>';
+        $content = '<div class="charteredcollege-asset-content">'.$assetlink.$postcontent.$metadata.$contentpart.$charteredcollegecompletionmeta.$groupmeta.'</div>';
         $cardicons = '<div class="charteredcollege-header-card-icons">'.$completiontracking.$coursetoolsicon.'</div>';
         $output .= '<div class="charteredcollege-header-card">'.$assettype.$cardicons.'</div>'.$content;
 
@@ -595,7 +598,27 @@ class course_renderer extends \core_course_renderer {
         }
         return '';
     }
+    /**
+     * Get extra custom field data for modules and return content
+     */
+    protected function get_extra_mod_data($mod, $field) {
+        global $DB;
+        $module = $mod->id;
+        $sql = "SELECT instanceid AS Module, data, name, shortname
+                FROM {local_metadata} As md
+                JOIN {local_metadata_field} AS category ON category.id = md.fieldid
+                WHERE instanceid = :mod AND shortname = :field";
 
+        $metafields = $DB->get_record_sql($sql, ['mod' => $module, 'field' => $field]);
+
+        if (empty($metafields->data)) {
+            return " ";
+        } else {
+            return '<div class = "charteredcollege_module_metadata">' . $metafields->name . ': ' . $metafields->data . '</div>';
+        }
+
+
+    }
     /**
      * Get the module meta data for a specific module.
      *
