@@ -202,7 +202,7 @@ class course_renderer extends \core_course_renderer {
      */
     public function course_section_cm($course, &$completioninfo, cm_info $mod, $sectionreturn, $displayoptions = array()) {
 
-        global $COURSE, $OUTPUT;
+        global $COURSE, $PAGE, $OUTPUT;
 
         $output = '';
         // We return empty string (because course module will not be displayed at all)
@@ -246,9 +246,12 @@ class course_renderer extends \core_course_renderer {
             $assetlink .= '<h3 class="charteredcollege-asset-link">'.$cmname.'</h3>';
         }
         // Meta data field.
-        //$contentpart = '<div class="contentafterlink">';
-        $metadata=$this->get_extra_mod_data($mod, 'approxtime');
-        //$contentpart .= '</div>';
+        if (!empty($PAGE->theme->settings->modulemetafield)) {
+            $metafield = $PAGE->theme->settings->modulemetafield;
+            $metadata = $this->get_extra_mod_data($mod, $metafield);
+        }
+
+
         // Asset content.
         $contentpart = $this->course_section_cm_text($mod, $displayoptions);
 

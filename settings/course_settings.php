@@ -41,6 +41,14 @@ $description = get_string('resourcedisplayhelp', 'theme_charteredcollege');
 $setting = new admin_setting_configradiobuttons($name, $title, $description, $default, $radios);
 $charteredcollegesettings->add($setting);
 
+// Which Module metadata field to display in activity cards
+$name = 'theme_charteredcollege/modulemetafield';
+$title = new lang_string('modulemetafielddisplay', 'theme_charteredcollege');
+$description = new lang_string('modulemetafielddescription', 'theme_charteredcollege');
+$default = "";
+$setting = new admin_setting_configtext($name, $title, $description, '', PARAM_RAW_TRIMMED, 50);
+$charteredcollegesettings->add($setting);
+
 // Resource and URL description display options.
 $name = 'theme_charteredcollege/displaydescription';
 $title = new lang_string('displaydescription', 'theme_charteredcollege');
