@@ -76,8 +76,12 @@ class course_renderer extends \core_course_renderer {
                 }
             } else if ($mod->modname === 'folder' && !$mod->url) {
                 // Folder mod set to display on page.
-                $modclasses = array('charteredcollege-activity');
-            } else if (plugin_supports('mod', $mod->modname, FEATURE_MOD_ARCHETYPE) === MOD_ARCHETYPE_RESOURCE) {
+                $modclasses = array('charteredcollege-activity', 'charteredcollege_extended_resource');
+            }  else if ($mod->modname === 'folder') {
+                $modclasses = array('charteredcollege-extended-resource');
+            }  else if ($mod->modname === 'url') {
+                $modclasses = array('charteredcollege-extended-resource');
+            }  else if (plugin_supports('mod', $mod->modname, FEATURE_MOD_ARCHETYPE) === MOD_ARCHETYPE_RESOURCE) {
                 $modclasses = array('charteredcollege-resource');
                 if ($mod->modname !== 'label') {
                     $modclasses = array('charteredcollege-resource', 'charteredcollege-resource-long');
