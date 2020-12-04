@@ -28,6 +28,7 @@
              "image": "",
              "title": "Slide title",
              "subtitle": "Slide subtitle"
+             "url": "https://bbc.co.uk
          },
          {
              "index": 2,
@@ -36,6 +37,7 @@
              "image": "",
              "title": "Slide title",
              "subtitle": "Slide subtitle"
+             "url": "https://bbc.co.uk
          }
         ]
     }
@@ -45,12 +47,14 @@
     <div class="carousel-inner" role="listbox">
         {{#slides}}
                 <div class="carousel-item carousel-{{name}} {{active}}">
+                    <a href="{{{url}}}" target="_blank">
                     <div class="carousel-slide" style="background-image:url({{{image}}});">
-                        <div class="carousel-caption d-none d-md-block">
+                       <div class="carousel-caption d-none d-md-block">
                             <h1>{{title}}</h1>
                             <p>{{subtitle}}</p>
                         </div>
-                    </div>
+
+                    </div></a>
                 </div>
         {{/slides}}
     </div>

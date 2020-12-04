@@ -111,4 +111,25 @@ $default = '';
 $setting = new admin_setting_configtext($name, $title, $description, $default);
 $charteredcollegesettings->add($setting);
 
+$name = 'theme_charteredcollege/slide_one_url';
+$title = new lang_string('url', 'theme_charteredcollege');
+$description = '';
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$charteredcollegesettings->add($setting);
+
+$name = 'theme_charteredcollege/slide_two_url';
+$title = new lang_string('url', 'theme_charteredcollege');
+$description = '';
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$charteredcollegesettings->add($setting);
+
+$name = 'theme_charteredcollege/slide_three_url';
+$title = new lang_string('url', 'theme_charteredcollege');
+$description = '';
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$charteredcollegesettings->add($setting);
+
 $settings->add($charteredcollegesettings);
