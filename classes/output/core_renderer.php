@@ -984,6 +984,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $image = $slidename . '_image';
             $title = $slidename . '_title';
             $subtitle = $slidename . '_subtitle';
+            $url = $slidename . '_url';
             if (!empty($PAGE->theme->settings->$image) && !empty($PAGE->theme->settings->$title)) {
                 $slide = (object) [
                     'index' => $i++,
@@ -991,7 +992,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
                     'name' => $slidename,
                     'image' => $PAGE->theme->setting_file_url($image, $image),
                     'title' => $PAGE->theme->settings->$title,
-                    'subtitle' => $PAGE->theme->settings->$subtitle
+                    'subtitle' => $PAGE->theme->settings->$subtitle,
+                    'url' => $PAGE->theme->settings->$url
                 ];
                 $slides[] = $slide;
             }
