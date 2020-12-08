@@ -912,7 +912,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $output = '';
         if (!isloggedin() || isguestuser()) {
             if (local::current_url_path() != '/login/index.php') {
-                $output .= $this->login_button();
+               // $output .= $this->login_button();
             }
         } else {
             $userpicture = new user_picture($USER);
