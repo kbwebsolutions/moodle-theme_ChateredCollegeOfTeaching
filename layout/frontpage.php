@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 require(__DIR__.'/header.php');
 
 use theme_charteredcollege\local;
+use theme_charteredcollege\renderables\login_alternative_methods;
 
 // @codingStandardsIgnoreStart
 // Note, coding standards ignore is required so that we can have more readable indentation under php tags.
@@ -57,7 +58,12 @@ echo $OUTPUT->custom_menu_spacer();
         echo $OUTPUT->page_heading();
         echo $OUTPUT->course_header();
         if ($PAGE->pagetype === 'site-index') {
+           if (!isloggedin() || isguestuser()) {
+               echo $OUTPUT->render_login_alternative_methods(new login_alternative_methods());
+           }
+           echo "<br /><div class='signinlink subcontent'>";
             echo $OUTPUT->login_button();
+            echo "</div>";
         }
     ?>
     </div>

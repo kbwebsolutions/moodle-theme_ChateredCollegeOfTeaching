@@ -151,3 +151,12 @@ b, strong {
 .modtype_page .charteredcollege_module_metadata {
 	margin-left: 0px;
 }
+
+#page-site-index {
+	.signinlink a {
+		color: $brand-secondary;
+		a:hover {
+			color:$brand-secondary;
+		}
+	}
+}

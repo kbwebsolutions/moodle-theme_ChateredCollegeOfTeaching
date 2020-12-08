@@ -398,4 +398,6 @@ $string['alternativeloginoptions'] = 'Alternative login options';
 $string['openmessagedrawer'] = 'Open messaging drawer. ';
 $string['design_mod_page'] = 'Enable previous design for page resources';
 $string['design_mod_page_description'] = 'If enabled, page resource content will be displayed inside the same page, course or front page.';
+$string['loginguest'] = 'Non-members use this link to sign in';
+$string['guestlogininstructions'] = 'If you are not a member of the Chartered College of Teaching you will have been sent your login details by email.  Please use those details to sign into MyPD';
 

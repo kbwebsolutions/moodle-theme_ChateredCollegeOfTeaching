@@ -80,7 +80,13 @@
 // Personal Menu as login form.
 // -------------------------
 .charteredcollege-pm-login-form {
-    .charteredcollege-pm-section {
+    h3 {
+        color: $brand-secondary;
+    }
+    .loginform {
+        width: 90%;
+    }
+        .charteredcollege-pm-section {
         display: flex;
         flex-direction: row;
         margin: 2em -8px;
@@ -100,9 +106,28 @@
     }
     .card {
         margin:1em auto;
-        border: 2px solid $border-color;
-        box-shadow: 1px 2px 6px 2px $border-color;
-        max-width: 60em;
+        border: 2px solid $brand-secondary;
+        //box-shadow: 1px 2px 6px 2px $border-color;
+        max-width: 50em;
+        padding: 1em 2em;
+        border-radius: 20px;
+    }
+
+    .loginform {
+        width: 90%;
+        .charteredcollege-login-button {
+        color: #ffffff;
+        background-color: $brand-secondary;
+        border-color: #dedede;
+        border-radius: 10px;
+
+            &:hover,
+            &:focus {
+                color: darken(#ffffff, 8%);
+                background-color: darken($brand-secondary, 8%);
+                border-color: darken($brand-secondary, 8%);
+            }
+        }
     }
 
 

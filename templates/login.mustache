@@ -13,24 +13,14 @@
             <div class="card-block">
                 <div class="card-body">
                     <div class="row justify-content-md-center">
-                        <div class="col-md-5 left-side">
-                            <h5>Members Login</h5>
-                            <p>Chartered College of Teaching members should use the button below to login to MyPD</p>
-                            {{#altlogins}}
-                                <div class="charteredcollege-pm-content">
-                                    {{{.}}}
-                                </div>
-                            {{/altlogins}}
-                        </div>
-                        <div class="col-md-5 right-side">
-                            <h6>Visitor Login</h6>
-                            <p>If you have been provided with a specific username and password for our Early Career Teacher or Chartered Teacher programme, please login here.</p>
+                        <h3>Visitor Login</h3>
+                        <p>{{#str}}guestlogininstructions, theme_charteredcollege{{/str}}</p>
                             {{#baselogin}}
-                                <div>
+                                <div class="loginform">
                                     {{{.}}}
                                 </div>
                             {{/baselogin}}
-                        </div>
+
                     </div>
                 </div>
             </div>

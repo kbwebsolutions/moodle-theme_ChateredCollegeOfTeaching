@@ -600,17 +600,18 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $loginurl = $CFG->wwwroot.'/login/index.php';
         $loginatts = [
             'aria-haspopup' => 'true',
-            'class' => 'btn btn-primary charteredcollege-login-button js-charteredcollege-pm-trigger',
+            'class' => 'js-charteredcollege-pm-trigger', // taken out btn btn-primary charteredcollege-login-button class KRB 7.12.20
         ];
         if (!empty($CFG->alternateloginurl) or !empty($CFG->theme_charteredcollege_disablequicklogin)) {
             $loginurl = $CFG->wwwroot.'/login/index.php';
             $loginatts = [
-                'class' => 'btn btn-primary charteredcollege-login-button',
+                'class' => 'btn btn-primary', // taken out charteredcollege-login-button class KRB 7.12.20
             ];
         }
         // This check is here for the front page login.
         if (!isloggedin() || isguestuser()) {
-            $output = html_writer::link($loginurl, get_string('login'), $loginatts);
+
+            $output = html_writer::link($loginurl, get_string('loginguest', 'theme_charteredcollege'), $loginatts);
         }
         return $output;
     }
