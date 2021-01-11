@@ -1047,17 +1047,16 @@ footer #moodle-footer
 // Logout icon trigger.
 #charteredcollege-logout-icon {
     @include alakazam;
-    .mypd-logout-icon {
+    .charteredcollege-logout-icon {
         fill: none;
-        stroke: currentColor;
-        stroke-width: 5;
-        stroke-miterlimit: 10;
+        stroke: none;
+        padding-top: 4px;
     }
     // Animate and change colour.
     &:hover,
     &:focus {
         transform: scale(0.8, 0.8);
-        .mypd-logout-icon {
+        .charteredcollege-logout-icon {
             fill: currentColor;
         }
     }
