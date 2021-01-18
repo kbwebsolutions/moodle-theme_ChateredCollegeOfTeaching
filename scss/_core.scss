@@ -1460,7 +1460,19 @@ header#page-header
     }
 }
 
-#page-site-index .sitetopic,
+#page-site-index .sitetopic
+{
+    max-width: 98.5em;
+    margin: 2em auto;
+    clear: both;
+    ul {
+        list-style: none;
+        h4,
+        p {
+            padding: 0.5em 0.25em;
+        }
+    }
+}
 #frontpage-category-names,
 #frontpage-category-combo {
     max-width: 50.5em;
