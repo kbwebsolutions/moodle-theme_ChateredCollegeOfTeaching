@@ -1155,7 +1155,7 @@ body.charteredcollege-resource-card {
         div.contentafterlink {
             .no-overflow {
                 word-wrap: break-word;
-                max-height: 4.2em;
+               // max-height: 4.2em; Rem'd out by KRB 19 Jan 2021
                 overflow: hidden;
                 position: relative;
             }
@@ -1175,7 +1175,7 @@ body.charteredcollege-resource-card {
                 -ms-user-select: none; /* Internet Explorer/Edge */
                 // Transparent needs to be set the color to white with 0 alpha to achieve the gradient. This is because for Safari
                 // transparent is a black color with 0 alpha and this will cause a bug.
-                background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, white);
+               // background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, white); Rem'd out by KRB 19 Jan 2021
             }
         }
     }
