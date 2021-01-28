@@ -7592,7 +7592,7 @@ fieldset[disabled] #page-mod-quiz-review .arrow_link.focus {
 }
 
 .que .qtext {
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .que.multichoice .answer .specificfeedback {
