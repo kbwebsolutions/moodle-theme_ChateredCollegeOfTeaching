@@ -320,9 +320,10 @@ $custom-menu-text-color: rgb(255, 255, 255) !default; // Need to define this wit
     #show-toc {
         color: $brand-primary;
     }
-
+    &#page-login-index #page, {
+        background-color: #ffffff;
+    }
     &#page-site-index #page-header,
-    &#page-login-index #page,
     .news-article-image,
     .news-article-preview,
     #charteredcollege-footer-alert,

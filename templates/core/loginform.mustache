@@ -96,7 +96,7 @@
 }}
 
 <div class="m-y-3 hidden-sm-down"></div>
-<div class="row charteredcollege-login-row"  id="logins">
+<div class="row charteredcollege-login-row charteredcollege-pm-login-form"  id="logins">
     <div class="charteredcollege-login charteredcollege-login-option charteredcollege-login-cell" id="base-login">
         {{#logourl}}
        <!-- <h2 class="charteredcollege-logo-sitename text-center">{{sitename}}</h2> -->
@@ -115,8 +115,8 @@
         <div class="card-block">
             <div class="card-body">
                 <div class="row justify-content-md-center">
-                    <div class="col-md-5 left-side">
-                        <h5>Members Login</h5>
+                    <div class="col-md-10">
+                        <h3 style="text-align: center">Members Login</h3>
                         <p>Chartered College of Teaching members should use the button below to login to MyPD</p>
                         {{#hasidentityproviders}}
                            <!-- <h5>{{#str}} potentialidps, auth {{/str}}</h5>-->
@@ -137,15 +137,15 @@
                             </div>
                         {{/hasidentityproviders}}
                     </div>
-                    <div class="col-md-5 right-side">
-                        <h6>Visitor Login</h6>
+                    <div class="col-md-10">
+                        <h3 style="text-align: center">Visitor Login</h3>
                         <p>If you have been provided with a specific username and password for our Early Career Teacher or Chartered Teacher programme, please login here.</p>
-                        <form action="{{loginurl}}" method="post" id="login" {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}} class="mypd-custom-form">
+                        <form action="{{loginurl}}" method="post" id="login" {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}} class="mypd-custom-form loginform">
         <input type="hidden" name="logintoken" value="{{logintoken}}">
         <input id="anchor" type="hidden" name="anchor" value="">
         <script>document.getElementById('anchor').value = location.hash;</script>
-
-        <label for="username" class="sr-only">
+<div class="form-group">
+        <label for="username" class="form-control-label">
             {{^canloginbyemail}}
                 {{#str}} username {{/str}}
             {{/canloginbyemail}}
@@ -153,17 +153,19 @@
                 {{#str}} usernameemail {{/str}}
             {{/canloginbyemail}}
         </label>
+
         <input type="text" name="username" id="username"
             class="form-control"
             value="{{username}}"
             placeholder={{#quote}}{{^canloginbyemail}}{{#str}}username{{/str}}{{/canloginbyemail}}{{#canloginbyemail}}{{#str}}usernameemail{{/str}}{{/canloginbyemail}}{{/quote}}>
-        <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
-        <input type="password" name="password" id="password" value=""
+</div>
+                            <div class="form-group"><label for="password" class="form-control-label">{{#str}} password {{/str}}</label>
+        <input type="password" name="password" id="passwordfield" value=""
             class="form-control"
             placeholder={{#quote}}{{#str}}password{{/str}}{{/quote}}
-            {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}}>
+            {{^passwordautocomplete}}autocomplete="off"{{/passwordautocomplete}}></div>
         <br>
-        <button type="submit" class="btn btn-outline-primary btn-block" id="loginbtn">{{#str}}login{{/str}}</button>
+        <button type="submit" class="btn charteredcollege-login-button btn-block" id="loginbtn">{{#str}}login{{/str}}</button>
         <a class="small btn btn-link btn-block" href="{{forgotpasswordurl}}">{{#str}}forgotten{{/str}}</a>
     </form>
                     </div>
@@ -178,7 +180,7 @@
 {{#hasinstructions}}
     <div class="js-only charteredcollege-login  charteredcollege-login-box ">
         <div class="charteredcollege-login-instructions">
-            <a class="btn btn-primary btn-block iconhelp" href="#" data-toggle="modal" data-target="#login-help-modal">
+            <a class="btn btn-secondary btn-block iconhelp" href="#" data-toggle="modal" data-target="#login-help-modal">
                 {{#str}}helpwithlogin, theme_charteredcollege{{/str}} {{#pix}}help, theme_charteredcollege, {{#str}}helpwithlogin, theme_charteredcollege{{/str}} {{/pix}}
             </a>
             <!-- Modal -->
@@ -208,6 +210,7 @@
     </div>
 {{/cansignup}}
 
+
 {{#canloginasguest}}
     <div class="charteredcollege-login charteredcollege-login-option charteredcollege-login-box">
         <h5>{{#str}}someallowguest{{/str}}</h5>
@@ -218,6 +221,7 @@
         </form>
     </div>
 {{/canloginasguest}}
+
 <span class="charteredcollege-log-in-more charteredcollege-log-in-loading-spinner"></span>
 
 {{#js}}

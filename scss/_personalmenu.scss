@@ -84,7 +84,10 @@
         color: $brand-secondary;
     }
     .loginform {
-        width: 90%;
+        width: 100%;
+        h3 {
+            text-align: center;
+        }
     }
         .charteredcollege-pm-section {
         display: flex;
@@ -114,7 +117,10 @@
     }
 
     .loginform {
-        width: 90%;
+        width: 100%;
+        h3 {
+            text-align: center;
+        }
         .charteredcollege-login-button {
         color: #ffffff;
         background-color: $brand-secondary;
