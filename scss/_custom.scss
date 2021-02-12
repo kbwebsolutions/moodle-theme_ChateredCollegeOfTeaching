@@ -154,3 +154,17 @@ b, strong {
 		}
 	}
 }
+#region-main .charteredcollege-login-button {
+	@include pill-btn;
+	color: #ffffff;
+	background-color: $brand-secondary;
+	border-color: #dedede;
+	border-radius: 10px;
+
+	&:hover,
+	&:focus {
+		color: darken(#ffffff, 8%);
+		background-color: darken($brand-secondary, 8%);
+		border-color: darken($brand-secondary, 8%);
+	}
+}
