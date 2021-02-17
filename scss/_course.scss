@@ -1296,7 +1296,8 @@ body.charteredcollege-resource-card {
         border-top-color: $color-url;
     }
     .contentafterlink {
-        font-size: small;
+       // font-size: small;
+        margin-left: (38px + 9px); // icon size (38px + margin);
     }
 
     &.charteredcollege-mime-document,
