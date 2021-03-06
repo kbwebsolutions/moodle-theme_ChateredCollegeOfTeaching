@@ -37,6 +37,7 @@ use html_writer;
 use moodle_url;
 use navigation_node;
 use user_picture;
+use core_competency\api;
 use theme_charteredcollege\local;
 use theme_charteredcollege\services\course;
 use theme_charteredcollege\renderables\settings_link;
@@ -756,6 +757,12 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'link' => s($CFG->wwwroot).'/badges/mybadges.php',
             'title' => get_string('badges')
         ];
+        if(api::list_user_plans($USER->id)) {
+        $learningplanslink = [ //Show only if there is a learning plan for the person
+                'link' => s($CFG->wwwroot) . '/admin/tool/lp/plans.php?userid=' . $USER->id,
+                'title' => get_string('myplans', 'tool_lp')
+        ];
+    }
         $logoutlink = [
             'id' => 'charteredcollege-pm-logout',
             'link' => s($CFG->wwwroot).'/login/logout.php?sesskey='.sesskey(),
@@ -767,7 +774,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
             //$dashboardlink,
             $preferenceslink,
             //$gradelink,
-            $badgeslink
+            $badgeslink,
+            $learningplanslink
         ];
 
         $courseid = $PAGE->course->id;
